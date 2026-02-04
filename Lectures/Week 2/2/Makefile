@@ -1,6 +1,10 @@
 CXX = g++ -std=c++23
-CFLAGS = -Wall -Wextra -Werror
+CXXFLAGS = -Wall -Wextra -Werror
 LDLIBS += -lstdc++ -lm
 
-Out.txt : main
-	./$< > Out.txt
+Out.txt : main # $< er input, måske kun det første, og $@ er target
+	./$< > $@
+
+main.o:
+
+main: main.o
