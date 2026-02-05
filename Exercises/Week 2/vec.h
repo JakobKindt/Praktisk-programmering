@@ -27,6 +27,8 @@ struct vec {
     // utility
     void set(double a, double b, double c) { x = a; y = b; z = c; }
     void print(const std::string& s = "") const;              // for debugging
+    double norm(void);
+    vec& project(const vec&);
 
     // stream output
     friend std::ostream& operator<<(std::ostream&, const vec&);
@@ -43,6 +45,9 @@ vec operator+(const double, const vec&);
 vec operator*(const vec&, double);
 vec operator*(double, const vec&);
 vec operator/(const vec&, double);
+double dot(const vec&, const vec&);
+double norm(const vec&);
+vec project(const vec&, const vec&);
 
 // approximate equality
 bool approx(const vec&, const vec&, double acc = 1e-6, double eps = 1e-6);
