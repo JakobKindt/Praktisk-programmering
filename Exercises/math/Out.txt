@@ -12,7 +12,8 @@ log(I)=(0,1.5708)	 Exact result: 1.5707963267948i
 	 gamma(8) = 5040
 	 gamma(9) = 40320
 	 gamma(10) = 362880
-Exact results (in order) are: 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880Implementation of ln(gamma) and comparison to actual gamma to show overflowing issue 
+Exact results (in order) are: 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880 
+Implementation of ln(gamma) and comparison to actual gamma to show overflowing issue 
 	 gamma(170) = 4.26907e+304
 	 ln(gamma(170)) = 701.437
  

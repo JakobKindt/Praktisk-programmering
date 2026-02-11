@@ -16,7 +16,7 @@ int main(){
     for (double i = 1; i<= 10; i++){
         std::cout << "\t gamma(" << i <<") = " << sfuns::fgamma(i) <<"\n";
     }
-    std::cout << "Exact results (in order) are: 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880";
+    std::cout << "Exact results (in order) are: 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880 \n";
     std::cout << "Implementation of ln(gamma) and comparison to actual gamma to show overflowing issue \n"; 
     for (double i = 170; i<= 175; i++){
         std::cout << "\t gamma(" << i <<") = " << sfuns::fgamma(i) <<"\n";
