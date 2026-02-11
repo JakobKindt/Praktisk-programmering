@@ -1,4 +1,4 @@
-#include"vec.h"
+// #include"vec.h"
 #include<cmath> // For std::sqrt
 #include<iostream>
 void vec::print(const std::string& s) const {std::cout << s << x << " " << y << " " << z << std::endl;} // Prints coordinates
