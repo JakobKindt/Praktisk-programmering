@@ -1,0 +1,6 @@
+echo: arg= 1
+echo: arg= 1.235
+echo: arg= Hello
+bar: datum = 1
+bar: datum = 1.234
+bar: datum = hello

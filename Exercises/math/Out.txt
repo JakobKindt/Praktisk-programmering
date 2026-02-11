@@ -1,0 +1,33 @@
+log(I)=(0,1.5708)	 Exact result: 1.5707963267948i
+   I^I=(0.20788,0)	 Exact result: 0.20787957635076
+   π^I=(0.413292,0.910598)	 Exact result: 0.41329211 + 0.91059849i
+   E^I=(0.540302,0.841471)	 Exact result: 0.5403023058681 + 0.8414709848i
+	 gamma(1) = 1
+	 gamma(2) = 1
+	 gamma(3) = 2
+	 gamma(4) = 6
+	 gamma(5) = 24
+	 gamma(6) = 120
+	 gamma(7) = 720
+	 gamma(8) = 5040
+	 gamma(9) = 40320
+	 gamma(10) = 362880
+Exact results (in order) are: 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880Implementation of ln(gamma) and comparison to actual gamma to show overflowing issue 
+	 gamma(170) = 4.26907e+304
+	 ln(gamma(170)) = 701.437
+ 
+	 gamma(171) = 7.25742e+306
+	 ln(gamma(171)) = 706.573
+ 
+	 gamma(172) = inf
+	 ln(gamma(172)) = 711.715
+ 
+	 gamma(173) = inf
+	 ln(gamma(173)) = 716.862
+ 
+	 gamma(174) = inf
+	 ln(gamma(174)) = 722.016
+ 
+	 gamma(175) = inf
+	 ln(gamma(175)) = 727.175
+ 
