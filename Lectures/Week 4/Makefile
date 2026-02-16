@@ -1,0 +1,7 @@
+CXXFLAGS += -Wall -std=c++23
+LDLIBS += -lstdc++ -lm
+fig1.svg: fig1.gpi erf.data
+	gnuplot $<
+
+erf.data : main Makefile #@ is the target
+	./$< -xmin -2 -max 2 -dx 0.25 > $@ 2>log.erf

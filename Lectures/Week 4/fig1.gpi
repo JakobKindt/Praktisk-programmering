@@ -1,0 +1,10 @@
+set terminal svg # file type
+set output "fig1.svg" # output name
+set xlabel "x"
+set ylabel "y"
+set key right bottom
+set tics out
+
+plot [-3:3] \
+    "erf.data" using 1:2 with points \
+    , erf(x)

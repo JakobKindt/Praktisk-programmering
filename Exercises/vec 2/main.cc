@@ -3,6 +3,7 @@
 #include"vec.h"
 int main(){
     vec<double> v(1., 2., 3.);
+    // vec<complex> v(std::complex(1., 0), std::complex(2., 2), std::complex(3., -1));
     vec<double> w(4., 5., 6.);
     // v.print();
     w.print();
@@ -19,7 +20,7 @@ int main(){
     std::cout << project(v, w) << "\n";
     std::cout << v.project(w) << "\n";
     std::cout << v.norm() << "\n";
-    std::cout << norm(v) << "\n";
+    // std::cout << norm(v) << "\n";
     std::cout << w/2 << w*2 << "\n";
 return 0;
 }
