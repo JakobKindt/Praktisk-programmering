@@ -8,7 +8,7 @@ int main(int argc, char** argv){
     for (int i = 0; i < argc; i++){
         std::string arg = argv[i];
         if (arg == "-xmin" && i + 1 < argc){xmin = std::stod(argv[i + 1]);}
-        if (arg == "-xmix" && i + 1 < argc){xmax = std::stod(argv[i + 1]);}
+        if (arg == "-xmax" && i + 1 < argc){xmax = std::stod(argv[i + 1]);}
         if (arg == "-dx" && i + 1 < argc){dx = std::stod(argv[i + 1]);}
     }
     std::cerr << "xmin = " << xmin << "\n";
