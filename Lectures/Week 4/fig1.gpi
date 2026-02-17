@@ -4,7 +4,7 @@ set xlabel "x"
 set ylabel "y"
 set key right bottom
 set tics out
-
+# column 1 against column 2.    
 plot [-3:3] \
-    "erf.data" using 1:2 with points \
-    , erf(x)
+    "erf.data" using 1:2 with points pointtype 4 title "erf from cmath" \
+    ,erf(x)
