@@ -3,31 +3,37 @@
 // #include"vec.h"
 #include"matrix.h"
 int main(){
-	// int n=5;
-	pp::vec<double> v{1., 2., 3.};
-    pp::vec<double> w{4., 5., 6.};
-    v *= w;
-    v.print();
-	// for(int i=0;i<n;i++)v[i]=i+1;
-	// for(int i=0;i<n;i++)u[i]=i+100;
-	// v.print("v=");
-	// u.print("u=");
-	// v+=u;
-	// v.print("new v=");
-	// u*=1000;
-	// u.print("even newer u=");
-    matrix B{v, w};
-    matrix C{v, w};
+    matrix B(2, 3);
+    pp::vec<double> v{1, 2, 3};
+    // pp::vec<double> v{1, 2};
+    v.print("v = ");
+    B = matrix({{1., 2., 3.}, {4., 5., 6.}});
+    matrix C{{1.5, 2.5, 3.5}, {4.5, 5.5, 6.5}};
+    matrix B_T = B.T();
     B.print("B = ");
-    B *= 2.5;
-    B.print("new B = ");
     C.print("C = ");
-    int n = B.ncols;
-    int m = B.nrows;
-    std::cout << n << ", " << m << "\n";
-    bool test = dimension_check(B, C);
-    std::cout << test << "\n";
-    B *= C;
-    B.print("B*C = ");
+    B_T.print("B.T = ");
+    matrix D = C - 2.5;
+    D.print("C*B_T = ");
+    std::cout << approx(C, C) << "\n"; 
+    pp::vec<double> w = B*v;
+    w.print("w = ");
 return 0;
 }
+
+// int main(){
+//     matrix B(2, 3);
+//     B = matrix({{1., 2., 3.}, {4., 5., 6.}});
+//     matrix C{{1.5, 2.5, 3.5}, {4.5, 5.5, 6.5}};
+//     matrix B_T = B.T();
+//     B.print("B = ");
+//     C.print("C = ");
+//     B_T.print("B.T = ");
+//     matrix D = C - 2.5;
+//     D.print("C*B_T = ");
+//     C.reshape(1, 6);
+//     C.print("C reshaped to 1, 6 = ");   
+//     matrix E = B.reshape(6, 1);
+//     E.print("B reshaped to 6, 1 = ");
+// return 0;
+// }
