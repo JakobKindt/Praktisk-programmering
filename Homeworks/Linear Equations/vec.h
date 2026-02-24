@@ -91,7 +91,7 @@ public:
 
     vec<T>& project(const vec<T>& w, bool demand_same_size = true){
         if (size() != w.size() && demand_same_size) {throw std::runtime_error("Dimensions mismatches");}
-        long unsigned int min = std::min(size(), w.size());
+        int min = std::min(size(), w.size());
         T sum = 0;
         if constexpr (is_complex<T>::value){
             for (int i = 0; i < min;++i){
@@ -185,7 +185,7 @@ public:
         return u;
     }
 
-    friend vec operator/(const T a, const vec& v){ // Division of a constant
+    friend vec operator/(const vec& v, const T a){ // Division of a constant
         vec u(v.size());
         for (int i = 0; i < v.size();++i){u[i] = v[i]/a;}
         return u;
@@ -222,7 +222,7 @@ public:
     }
     friend vec<T> project(const vec<T>& v, const vec<T> &w, bool demand_same_size = true){ // Projects vector onto another vector
         if (v.size() != w.size() && demand_same_size) {throw std::runtime_error("Dimensions mismatches");}
-        long unsigned int min = std::min(v.size(), w.size());
+        int min = std::min(v.size(), w.size());
         T sum = 0;
         if constexpr (is_complex<T>::value){
             for (int i = 0; i < min;++i){

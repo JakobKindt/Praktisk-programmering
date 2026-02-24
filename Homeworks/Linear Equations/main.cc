@@ -1,39 +1,20 @@
 #include<iostream>
 #include<cstdio>
 // #include"vec.h"
-#include"matrix.h"
+// #include"matrix.h"
+#include"QR-factorization.h"
 int main(){
-    matrix B(2, 3);
-    pp::vec<double> v{1, 2, 3};
-    // pp::vec<double> v{1, 2};
-    v.print("v = ");
-    B = matrix({{1., 2., 3.}, {4., 5., 6.}});
-    matrix C{{1.5, 2.5, 3.5}, {4.5, 5.5, 6.5}};
-    matrix B_T = B.T();
-    B.print("B = ");
+    pp::vec<double> b{2, 5, 1, 2};
+    matrix C{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 13}};
+    // matrix C{{12, -51, 4}, {6, 167, -68}, {-4, 24, -41}, {1, 2, 3}};
+    // matrix C{{1, 0, 0}, {0, 1, 0}, {0, 0, 2}};
     C.print("C = ");
-    B_T.print("B.T = ");
-    matrix D = C - 2.5;
-    D.print("C*B_T = ");
-    std::cout << approx(C, C) << "\n"; 
-    pp::vec<double> w = B*v;
-    w.print("w = ");
+    QR A{C};
+    A.Q.print("Q = ");
+    A.R.print("R = ");
+    // double n = A.det();
+    // std::cout << n << "\n";
+    pp::vec<double> x = A.solve(b);
+    x.print();
 return 0;
 }
-
-// int main(){
-//     matrix B(2, 3);
-//     B = matrix({{1., 2., 3.}, {4., 5., 6.}});
-//     matrix C{{1.5, 2.5, 3.5}, {4.5, 5.5, 6.5}};
-//     matrix B_T = B.T();
-//     B.print("B = ");
-//     C.print("C = ");
-//     B_T.print("B.T = ");
-//     matrix D = C - 2.5;
-//     D.print("C*B_T = ");
-//     C.reshape(1, 6);
-//     C.print("C reshaped to 1, 6 = ");   
-//     matrix E = B.reshape(6, 1);
-//     E.print("B reshaped to 6, 1 = ");
-// return 0;
-// }

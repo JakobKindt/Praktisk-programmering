@@ -62,6 +62,13 @@ public:
             
 		std::cout<<"\n";
 	}
+
+    pp::vec<double> get_col(int);
+    matrix& set_col(int, pp::vec<double>&);
+    matrix& set_col(int, double);
+    pp::vec<double> get_row(int);
+    matrix& set_row(int, pp::vec<double>&);
+    matrix& set_row(int, double);
 };
 
 bool dimension_check(const matrix&, const matrix&);
@@ -69,6 +76,7 @@ bool dimension_check(const matrix&, const matrix&);
 
 matrix T(const matrix&); // transposed
 matrix reshape(const matrix&, const int&, const int&);
+matrix identity(const int&);
 // // non-member operators
 
 matrix operator-(const matrix&);

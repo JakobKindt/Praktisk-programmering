@@ -5,15 +5,19 @@ LDLIBS = -lstdc++ -lm #L is for link
 Out.txt : main # This is what the file has to do. The like below runs main and sends it to output. By default, make only makes the first file, otherwise the order does not matter.
 	./main > Out.txt 
 
-main : main.o matrix.o # The below line will link main.o     CXX is a driver    The lines below are rules. Main is called a dish, main.o and hello.o is called a ingredients and the rules are called a recipy.
+main : main.o matrix.o QR-factorization.o # The below line will link main.o     CXX is a driver    The lines below are rules. Main is called a dish, main.o and hello.o is called a ingredients and the rules are called a recipy.
 
-main.o : main.cc vec.h matrix.h # main.o depends on main.cpp and will compile it, hence the -c and -o means that the output will go to main.o. It is redundant but is included for pædagogiske reasons.
+main.o : main.cc vec.h matrix.h QR-factorization.h # main.o depends on main.cpp and will compile it, hence the -c and -o means that the output will go to main.o. It is redundant but is included for pædagogiske reasons.
 # 	$(CXX) $(CXXFLAGS) -c main.cc -o main.o
 
 
 matrix : matrix.o
 
-matrix.o : matrix.cc matrix.h vec.h
+matrix.o : matrix.cc matrix.h vec.h QR-factorization.h
+
+QR-factorization : QR-factorization.o
+
+QR-factorization.o : matrix.h vec.h
 
 
 # vec.o: vec.cc vec.h

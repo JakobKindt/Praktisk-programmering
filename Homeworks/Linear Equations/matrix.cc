@@ -217,3 +217,57 @@ matrix operator/(const double a, const matrix& A){
         }; 
     return res;
 };
+
+
+
+pp::vec<double> matrix::get_row(int i){
+    pp::vec<double> res(nrows);
+    for (int j = 0; j < nrows; ++j){
+        res[j] = cols[i*nrows + j];
+    }
+    return res;
+}
+matrix& matrix::set_row(int i, pp::vec<double>& v){
+    if (v.size() != nrows){throw std::runtime_error("Dimensions mismatch, rows = " + std::to_string(nrows) + ", " + std::to_string(v.size()) + ". \n");}
+    for (int j = 0; j < nrows; ++j){
+        cols[i*nrows + j] = v[j];
+    }
+    return *this;
+}
+
+matrix& matrix::set_row(int i, double a){
+    for (int j = 0; j < nrows; ++j){
+        cols[i*nrows + j] = a;
+    }
+    return *this;
+}
+
+pp::vec<double> matrix::get_col(int i){
+    pp::vec<double> res(ncols);
+    for (int j = 0; j < ncols; ++j){
+        res[j] = cols[i + j*nrows];
+    }
+    return res;
+}
+matrix& matrix::set_col(int i, pp::vec<double>& v){
+    if (v.size() != ncols){throw std::runtime_error("Dimensions mismatch, cols = " + std::to_string(ncols) + ", " + std::to_string(v.size()) + ". \n");}
+    for (int j = 0; j < ncols; ++j){
+        cols[i + j*nrows] = v[j];
+    }
+    return *this;
+}
+
+matrix& matrix::set_col(int i, double a){
+    for (int j = 0; j < ncols; ++j){
+        cols[i + j*nrows] = a;
+    }
+    return *this;
+}
+
+matrix identity (const int& i){
+    matrix res(i, i);
+    for (int j = 0; j < i;++j){
+        res[j, j] = 1;
+    }
+    return res;
+}
