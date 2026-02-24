@@ -81,7 +81,7 @@ matrix& matrix::operator-=(matrix& B){
 
 
 matrix operator*(const matrix& A, const matrix& B){
-    if (A.nrows != B.ncols || A.ncols != B.nrows){throw std::runtime_error("Dimensions mismatch, cols = " + std::to_string(A.ncols) + ", " + std::to_string(B.ncols) + ", rows = " + std::to_string(A.nrows) + ", " + std::to_string(B.nrows) + ". \n");}
+    if (A.nrows != B.ncols){throw std::runtime_error("Dimensions mismatch, B cols = " + std::to_string(B.ncols) + ", A rows = " + std::to_string(A.nrows) + ". \n");}
     matrix res(B.nrows, A.ncols);
     for(int i = 0; i < A.ncols; ++i){
         
