@@ -2,14 +2,62 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++23 -O
 LINK.o = $(CXX) $(LDFLAGS) # This does the same a the line below
 LDLIBS = -lstdc++ -lm #L is for link
 
-Out.txt : main # This is what the file has to do. The like below runs main and sends it to output. By default, make only makes the first file, otherwise the order does not matter.
+Out.txt : main
 	./main > Out.txt 
 
-main : main.o matrix.o QR-factorization.o # The below line will link main.o     CXX is a driver    The lines below are rules. Main is called a dish, main.o and hello.o is called a ingredients and the rules are called a recipy.
+out.times.data : main
+	>$@
+	for N in $$(seq 20 20 500); do \
+		time --format "$$N %e" --output $@ --append ./main -size $(N) $$N >> log.main ;\
+	done
 
-main.o : main.cc vec.h matrix.h QR-factorization.h # main.o depends on main.cpp and will compile it, hence the -c and -o means that the output will go to main.o. It is redundant but is included for pædagogiske reasons.
-# 	$(CXX) $(CXXFLAGS) -c main.cc -o main.o
 
+times.svg: out.times.data
+	echo '\
+		set terminal svg ;\
+		set output "$@" ;\
+		set xlabel "Dimension of square matrix" ;\
+		set ylabel "Real time (s)" ;\
+		a = 1; b = 1; c = 1; d = 1; \
+		f(x) = a*x*x*x + b*x*x + c*x + d ;\
+		fit f(x) "$<" using 1:2 via a,b,c,d ;\
+		plot \
+			"$<" using 1:2 with linespoints title "Investigation of time" \
+			, f(x) with lines title "fit with third order polynomial" ;\
+		' | tee log.times | gnuplot
+
+# times.svg: out.times.data
+# 	echo '\
+# 		set terminal svg ;\
+# 		set output "$@" ;\
+# 		set xlabel "Dimension of square matrix" ;\
+# 		set ylabel "Real time (s)" ;\
+# 		a = 1; b = 1; c = 1; d = 1; \
+# 		f(x) = a*x*x*x + b*x*x + c*x + d ;\
+# 		fit f(x) "$<" using 1:2 via a,b,c,d ;\
+# 		plot \
+# 			"$<" using 1:2 with linespoints title "Investigation of time", \
+# 			f(x) with lines title "fit with third order polynomial" ;\
+# 		' | tee log.times | gnuplot
+
+# times.svg: out.times Makefile
+# 	echo '\
+# 		set terminal svg ;\
+# 		set output "$@" ;\
+# 		set xlabel "Number of threads" ;\
+# 		set ylabel "Real time (s)" ;\
+# 		a = 1; b = 10;\
+# 		f(x) = a + b/x \;
+# 		fit f(x) using 1:2 via a,b ;\
+# 		plot \
+# 			"$<" using 1:2 with lineplots title "Times" \
+# 			, f(x) title "fit with 1/n" ;\
+# 	'| tee log.times |gnuplot
+
+
+main : main.o matrix.o QR-factorization.o 
+
+main.o : main.cc vec.h matrix.h QR-factorization.h
 
 matrix : matrix.o
 
@@ -19,13 +67,9 @@ QR-factorization : QR-factorization.o
 
 QR-factorization.o : matrix.h vec.h
 
-
-# vec.o: vec.cc vec.h
-# 	$(CXX) $(CXXFLAGS) -c hello.cc -o hello.o
-
-.PHONY:clean # Purists way, this declares things which are not files as phoneys, which allows us to have another actual file called clean.
+.PHONY:clean 
 clean: # Forces to remove the stuff listed
-	$(RM) main main.o Out.txt *.o
+	$(RM) main main.o Out.txt *.o out* err
 
 test:
 	@echo CXX

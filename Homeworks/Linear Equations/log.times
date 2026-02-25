@@ -1,0 +1,12 @@
+\
+	set terminal svg ;\
+	set output "times.svg" ;\
+	set xlabel "Dimension of square matrix" ;\
+	set ylabel "Real time (s)" ;\
+	a = 1; b = 1; c = 1; d = 1; \
+	f(x) = a*x*x*x + b*x*x + c*x + d ;\
+	fit f(x) "out.times.data" using 1:2 via a,b,c,d ;\
+	plot \
+		"out.times.data" using 1:2 with linespoints title "Investigation of time" \
+		, f(x) with lines title "fit with third order polynomial" ;\
+	

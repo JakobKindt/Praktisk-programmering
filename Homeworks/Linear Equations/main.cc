@@ -2,33 +2,9 @@
 #include<cstdio>
 #include<random>
 #include<cmath>
-// #include"vec.h"
-// #include"matrix.h"
 #include"QR-factorization.h"
 
-// int main()
-// {
-//     // Declaring the upper and lower
-//     // bounds
-//     double lower_bound = 0;
-//     double upper_bound = 100;
-
-//     uniform_real_distribution<double> unif(lower_bound,
-//                                            upper_bound);
-
-//     default_random_engine re;
-
-//     // Getting a random double value
-//     double random_double = unif(re);
-
-//     cout << random_double << endl;
-
-//     return 0;
-// }
-
-int main(){
-    
-    // matrix C{{1, 2, 3}, {0, 5, 6}, {0, 0, 10}};
+int main(int argc, char** argv){
     std::uniform_real_distribution<> dist(2.0, 4.0); 
     std::default_random_engine re;
     std::mt19937 gen(re());
@@ -75,3 +51,27 @@ int main(){
     (D*B).print("A*B = ");
 return 0;
 }
+
+// PART C IS DONE SEPERATELY SINCE WE ARE TIMING THE PROCESS AND DO NOT WANT TO DO PART A AND B FOR NO REASON - JUST EXCLUDE THE PREVIOUS MAIN AND INCLUDE THE FOLLOWING MAIN INSTEAD.
+// int main(int argc, char** argv){
+//     std::uniform_real_distribution<> dist(2.0, 4.0); 
+//     std::default_random_engine re;
+//     std::mt19937 gen(re());
+
+
+//     std::cout << "Part c \n";
+//     int N = 1;
+//     for (int i = 0; i < argc;i++){
+//         std::string arg = argv[i];
+//         if (arg == "-size" && i + 1 < argc){N = std::stoi(argv[++i]);}
+//     }
+//     std::cerr << "N = " << N << "\n";
+
+//     matrix C(N, N);
+//     for (int i = 0; i < C.nrows*C.ncols; ++i){
+//         C.cols[i] = dist(re);
+//     }
+
+//     QR A{C};
+// return 0;
+// }
