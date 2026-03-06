@@ -1,0 +1,13 @@
+\
+	set terminal svg ;\
+	set output "times.svg" ;\
+	set xlabel "Dimension of random matrix" ;\
+	set ylabel "Real time (s)" ;\
+	set title "Time for EVD" ;\
+	a = 1; b = 1; c = 1; d = 1 ;\
+	f(x) = a*x*x*x + b*x*x + c*x + d ;\
+	fit f(x) "out.times-2.txt" using 1:2 via a,b,c,d ;\
+	plot \
+		"out.times-2.txt" using 1:2 with linespoints title "Data", \
+		f(x) with lines title "fit as O(n^3)" ;\
+	

@@ -97,9 +97,9 @@ matrix operator*(const matrix& A, const matrix& B){
 };
 
 
-pp::vec operator*(const matrix& A, const pp::vec& v){
+pp::vec<double> operator*(const matrix& A, const pp::vec<double>& v){
     if (A.nrows != v.size()){throw std::runtime_error("Dimensions mismatch, rows = " + std::to_string(A.nrows) + ", " + std::to_string(v.size()) + ". \n");}
-    pp::vec res(A.ncols);
+    pp::vec<double> res(A.ncols);
     for(int i = 0; i < A.ncols; ++i){
         float sum = 0;
         for (int j = 0; j < A.nrows;++j){
@@ -111,9 +111,9 @@ pp::vec operator*(const matrix& A, const pp::vec& v){
 };
 
 
-pp::vec operator*(const pp::vec& v, const matrix& A){
+pp::vec<double> operator*(const pp::vec<double>& v, const matrix& A){
     if (A.ncols != v.size()){throw std::runtime_error("Dimensions mismatch, cols = " + std::to_string(A.ncols) + ", " + std::to_string(v.size()) + ". \n");}
-    pp::vec res(A.nrows);
+    pp::vec<double> res(A.nrows);
     for(int i = 0; i < A.nrows; ++i){
         float sum = 0;
         for (int j = 0; j < A.nrows;++j){
@@ -220,14 +220,14 @@ matrix operator/(const double a, const matrix& A){
 
 
 
-pp::vec matrix::get_row(int i){
-    pp::vec res(nrows);
+pp::vec<double> matrix::get_row(int i){
+    pp::vec<double> res(nrows);
     for (int j = 0; j < nrows; ++j){
         res[j] = cols[i*nrows + j];
     }
     return res;
 }
-matrix& matrix::set_row(int i, pp::vec& v){
+matrix& matrix::set_row(int i, pp::vec<double>& v){
     if (v.size() != nrows){throw std::runtime_error("Dimensions mismatch, rows = " + std::to_string(nrows) + ", " + std::to_string(v.size()) + ". \n");}
     for (int j = 0; j < nrows; ++j){
         cols[i*nrows + j] = v[j];
@@ -242,14 +242,14 @@ matrix& matrix::set_row(int i, double a){
     return *this;
 }
 
-pp::vec matrix::get_col(int i){
-    pp::vec res(ncols);
+pp::vec<double> matrix::get_col(int i){
+    pp::vec<double> res(ncols);
     for (int j = 0; j < ncols; ++j){
         res[j] = cols[i + j*nrows];
     }
     return res;
 }
-matrix& matrix::set_col(int i, pp::vec& v){
+matrix& matrix::set_col(int i, pp::vec<double>& v){
     if (v.size() != ncols){throw std::runtime_error("Dimensions mismatch, cols = " + std::to_string(ncols) + ", " + std::to_string(v.size()) + ". \n");}
     for (int j = 0; j < ncols; ++j){
         cols[i + j*nrows] = v[j];

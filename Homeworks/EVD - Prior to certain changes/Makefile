@@ -3,20 +3,20 @@ LINK.o = $(CXX) $(LDFLAGS) # This does the same a the line below
 LDLIBS = -lstdc++ -lm #L is for link
 
 
-all: Out.txt out.dr.txt out.rmax.txt dr.svg rmax.svg out.func.txt func.svg out.times-2.txt times.svg
+all: Out.txt out.dr.txt out.rmax.txt dr.svg rmax.svg out.func.txt func.svg
 
 Out.txt : main
 	./main > Out.txt 
 
-out.func.txt: main_b
+out.func.txt: main
 	./$< -dr 0.01 -rmax 10 -output $@ 1 >> $@
 
-out.dr.txt : main_b
+out.dr.txt : main
 	for dr in $$(seq 0.05 0.05 1); do \
 		echo "$$dr $$(./$< -dr $$dr -make_dr 1)" >> $@;\
 	done
 
-out.rmax.txt : main_b
+out.rmax.txt : main
 	for rmax in $$(seq 1 1 10); do \
 		echo "$$rmax $$(./$< -rmax $$rmax -make_rmax 1)" >> $@ ;\
 	done
@@ -56,33 +56,20 @@ func.svg: out.func.txt
 			"$<" using 1:5 with lines title "f_4" \
 		' | tee log.times |gnuplot
 
-main : main.o matrix.o EVD.o vector.o
+main : main.o matrix.o EVD.o
 
-main.o : main.cc vector.h matrix.h EVD.h
+main.o : main.cc vec.h matrix.h EVD.h
 
-main_b : main_b.o matrix.o EVD.o vector.o
+matrix : matrix.o
 
-main_b.o : main_b.cc vector.h matrix.h EVD.h
+matrix.o : matrix.cc matrix.h vec.h EVD.h
 
-main_c : main_c.o matrix.o EVD.o vector.o
+EVD : EVD.o matrix.o
 
-main_c.o : main_c.cc vector.h matrix.h EVD.h
+EVD.o : matrix.h vec.h EVD.h EVD.cc
 
-vector : vector.o
-
-vector.o : vector.h vector.cc
-
-matrix : matrix.o vector.o
-
-matrix.o : matrix.cc matrix.h vector.h EVD.h vector.o
-
-EVD : EVD.o matrix.o vector.o
-
-EVD.o : matrix.h vector.h EVD.h EVD.cc
-
-# Ns := $(shell seq 100 10 500)
-Ns := $(shell seq 1200 -100 100)
-out.times-2.txt: main_c Makefile
+Ns := $(shell seq 100 10 500)
+out.times-2.txt: main.cc Makefile
 	for N in $(Ns); do \
 		time -ao log.$$N -f "$$N %e" ./$< -size $$N & \
 	done; wait
@@ -109,7 +96,7 @@ times.svg: out.times-2.txt
 
 .PHONY:clean 
 clean: # Forces to remove the stuff listed
-	$(RM) main main.o Out.txt *.o out* err *.svg *.log log.* main_b main_b.o main_c.o main_c
+	$(RM) main main.o Out.txt *.o out* err *.svg
 
 test:
 	@echo CXX

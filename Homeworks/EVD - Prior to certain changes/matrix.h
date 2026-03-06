@@ -2,12 +2,12 @@
 #include<vector>
 #include<iostream>
 #include<string>
-#include"vector.h"
+#include"vec.h"
 // namespace pp{
 
 class matrix{
 public:
-	pp::vec cols;
+	pp::vec<double> cols;
     int nrows, ncols; 
 
 	double& operator[](int i,int j){return cols[i*nrows + j];}
@@ -24,14 +24,14 @@ public:
     matrix& operator=(const matrix&) = default;
     matrix& operator=(matrix&&) = default;
 
-    matrix(std::initializer_list<pp::vec> list){
+    matrix(std::initializer_list<pp::vec<double>> list){
         ncols = list.size();
         
         int i = 0;
-        for (pp::vec v : list){
+        for (pp::vec<double> v : list){
             if (i == 0){
                 nrows = v.size();
-                cols = pp::vec(ncols*nrows);
+                cols = pp::vec<double>(ncols*nrows);
             }
             for (int j = 0; j < nrows;++j){
                 cols[i*nrows + j] = v[j];
@@ -63,11 +63,11 @@ public:
 		std::cout<<"\n";
 	}
 
-    pp::vec get_col(int);
-    matrix& set_col(int, pp::vec&);
+    pp::vec<double> get_col(int);
+    matrix& set_col(int, pp::vec<double>&);
     matrix& set_col(int, double);
-    pp::vec get_row(int);
-    matrix& set_row(int, pp::vec&);
+    pp::vec<double> get_row(int);
+    matrix& set_row(int, pp::vec<double>&);
     matrix& set_row(int, double);
 };
 
@@ -89,8 +89,8 @@ matrix operator+(const double, const matrix&);
 matrix operator*(const matrix&, double);
 matrix operator*(double, const matrix&);
 matrix operator*(const matrix&, const matrix&);
-pp::vec operator*(const matrix&, const pp::vec&);
-pp::vec operator*(const pp::vec&, const matrix&);
+pp::vec<double> operator*(const matrix&, const pp::vec<double>&);
+pp::vec<double> operator*(const pp::vec<double>&, const matrix&);
 matrix operator/(const matrix&, double);
 // double dot(const vec&, const vec&);
 // double norm(const vec&);

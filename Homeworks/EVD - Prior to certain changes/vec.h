@@ -119,7 +119,7 @@ public:
 
     // stream output
     friend std::ostream& operator<<(std::ostream& os, const vec& v) {
-        if (v.size() <= 20){
+        if (v.size() <= 200){
         os << "{";
         for (int i = 0; i + 1 < v.size();++i){
         os << v[i] << ", ";
