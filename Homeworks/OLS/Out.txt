@@ -1,0 +1,8 @@
+Optimal parameters for ln(a) and lambda respectively are{4.95867, 0.170624} 
+The covarience matrix for ln(a) and lambda is 	 0.0012533, 	0.000197055, 	 
+	 0.000197055, 	5.12172e-05, 	 
+
+Uncertainty on ln(y) is dy/y since ln'(y) = 1/y, so (dln(y))^2 = (dy*ln'(y))^2 = (dy/y)^2 as wanted. 
+Halflife (ln(2)/lambda) is equal to 4.06242 days. Modern value is 3.6316(23) days. Source is: https://chemlin.org/isotope/radium-224 
+Uncertainty of halflife is by the law of accumulation given as (ln(2)*dlambda/lambda**2) which equal to 0.170393 days. 
+This means that the experiment is 2.5284 standard deviations away from the modern result. 
