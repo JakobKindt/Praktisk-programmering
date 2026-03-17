@@ -63,7 +63,7 @@ vector.o : vector.h vector.cc
 
 matrix : matrix.o vector.o
 
-matrix.o : matrix.cc matrix.h vector.h QR-factorization.h vector.o
+matrix.o : matrix.cc matrix.h vector.h vector.o
 
 QR-factorization : QR-factorization.o matrix.o vector.o
 
