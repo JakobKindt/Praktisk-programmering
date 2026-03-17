@@ -1,6 +1,6 @@
  \
 	set terminal svg ;\
-	set output "Splines.svg" ;\
+	set output "Splines_quad.svg" ;\
 	set xlabel "x" ;\
 	set ylabel "y" ;\
 	set title "Fitting using Spline" ;\
@@ -10,7 +10,7 @@
 	plot \
 		f(x) with lines lt rgb "black" title "f(x) = cos(x)", \
 		F(x) with lines lt rgb "black" title "F(x) = sin(x)", \
-		"data.txt" using 4:5 with points title "Data", \
-		"data.txt" using 1:2 with lines title "f(x) via Spline", \
-		"data.txt" using 1:3 with lines title "F(x) via Spline" ;\
+		"data_b.txt" using 4:5 with points title "Data", \
+		"data_b.txt" using 1:2 with lines title "f(x) via Spline", \
+		"data_b.txt" using 1:3 with lines title "F(x) via Spline" ;\
 
