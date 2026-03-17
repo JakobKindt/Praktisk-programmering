@@ -3,7 +3,7 @@ LINK.o = $(CXX) $(LDFLAGS) # This does the same a the line below
 LDLIBS = -lstdc++ -lm #L is for link
 
 
-all: Out.txt Splines_lin.svg Splines_quad.svg
+all: Out.txt Splines_lin.svg Splines_quad.svg Splines_cubic.svg
 
 Out.txt : main
 	./main > Out.txt 
@@ -43,6 +43,58 @@ Splines_quad.svg: data_b.txt Makefile
 			"$<" using 1:2 with lines title "f(x) via Spline", \
 			"$<" using 1:3 with lines title "F(x) via Spline" ;\
 	' |tee log.activities |gnuplot
+
+# Splines_quad.svg: data_b.txt Makefile
+# 	echo ' \
+# 		set terminal svg ;\
+# 		set output "$@" ;\
+# 		set xlabel "x" ;\
+# 		set ylabel "y" ;\
+# 		set title "Fitting using Spline" ;\
+# 		set key outside;\
+# 		f(x) = cos(x) ;\
+# 		F(x) = sin(x) ;\
+# 		plot \
+# 			f(x) with lines lt rgb "black" title "f(x) = cos(x)", \
+# 			"$<" using 4:5 with points title "Data", \
+# 			"$<" using 1:2 with lines title "f(x) via Spline", \
+# 			"$<" using 1:3 with lines title "F(x) via Spline" ;\
+# 	' |tee log.activities |gnuplot
+
+Splines_cubic.svg: data_c.txt Makefile
+	echo ' \
+		set terminal svg ;\
+		set output "$@" ;\
+		set xlabel "x" ;\
+		set ylabel "y" ;\
+		set title "Fitting using Spline" ;\
+		set key outside;\
+		f(x) = cos(x) ;\
+		F(x) = sin(x) ;\
+		plot \
+			f(x) with lines lt rgb "black" title "f(x) = cos(x)", \
+			F(x) with lines lt rgb "black" title "F(x) = sin(x)", \
+			"$<" using 4:5 with points title "Data", \
+			"$<" using 1:2 with lines title "f(x) via Spline", \
+			"$<" using 1:3 with lines title "F(x) via Spline" ;\
+	' |tee log.activities |gnuplot
+
+# Splines_cubic.svg: data_c.txt Makefile
+# 	echo ' \
+# 		set terminal svg ;\
+# 		set output "$@" ;\
+# 		set xlabel "x" ;\
+# 		set ylabel "y" ;\
+# 		set title "Fitting using Spline" ;\
+# 		set key outside;\
+# 		f(x) = cos(x) ;\
+# 		F(x) = sin(x) ;\
+# 		plot \
+# 			f(x) with lines lt rgb "black" title "f(x) = cos(x)", \
+# 			"$<" using 4:5 with points title "Data", \
+# 			"$<" using 1:2 with lines title "f(x) via Spline", \
+# 			"$<" using 1:3 with lines title "F(x) via Spline" ;\
+# 	' |tee log.activities |gnuplot
 
 
 

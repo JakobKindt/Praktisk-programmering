@@ -49,7 +49,7 @@ public:
     vec& project(const vec& w, bool demand_same_size = true);
 
     void print(const std::string& s = ""){ // for debugging // Prints coordinates
-        if (size() <= 20){
+        if (size() <= 100){
         std::cout << s << "{";
         for (int i = 0; i + 1 < size();++i){
         std::cout << data[i] << ", ";
