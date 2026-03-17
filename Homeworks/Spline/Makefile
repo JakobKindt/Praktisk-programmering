@@ -44,23 +44,6 @@ Splines_quad.svg: data_b.txt Makefile
 			"$<" using 1:3 with lines title "F(x) via Spline" ;\
 	' |tee log.activities |gnuplot
 
-# Splines_quad.svg: data_b.txt Makefile
-# 	echo ' \
-# 		set terminal svg ;\
-# 		set output "$@" ;\
-# 		set xlabel "x" ;\
-# 		set ylabel "y" ;\
-# 		set title "Fitting using Spline" ;\
-# 		set key outside;\
-# 		f(x) = cos(x) ;\
-# 		F(x) = sin(x) ;\
-# 		plot \
-# 			f(x) with lines lt rgb "black" title "f(x) = cos(x)", \
-# 			"$<" using 4:5 with points title "Data", \
-# 			"$<" using 1:2 with lines title "f(x) via Spline", \
-# 			"$<" using 1:3 with lines title "F(x) via Spline" ;\
-# 	' |tee log.activities |gnuplot
-
 Splines_cubic.svg: data_c.txt Makefile
 	echo ' \
 		set terminal svg ;\
@@ -78,24 +61,6 @@ Splines_cubic.svg: data_c.txt Makefile
 			"$<" using 1:2 with lines title "f(x) via Spline", \
 			"$<" using 1:3 with lines title "F(x) via Spline" ;\
 	' |tee log.activities |gnuplot
-
-# Splines_cubic.svg: data_c.txt Makefile
-# 	echo ' \
-# 		set terminal svg ;\
-# 		set output "$@" ;\
-# 		set xlabel "x" ;\
-# 		set ylabel "y" ;\
-# 		set title "Fitting using Spline" ;\
-# 		set key outside;\
-# 		f(x) = cos(x) ;\
-# 		F(x) = sin(x) ;\
-# 		plot \
-# 			f(x) with lines lt rgb "black" title "f(x) = cos(x)", \
-# 			"$<" using 4:5 with points title "Data", \
-# 			"$<" using 1:2 with lines title "f(x) via Spline", \
-# 			"$<" using 1:3 with lines title "F(x) via Spline" ;\
-# 	' |tee log.activities |gnuplot
-
 
 
 main : main.o matrix.o Splines.o vector.o

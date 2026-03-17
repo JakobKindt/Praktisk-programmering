@@ -4,7 +4,6 @@
 #include"Splines.h"
 #include<fstream>
 
-// int main(int argc, char** argv){
 int main(){
     std::cout << "Part a: \n";
     int N = 1000;
@@ -52,12 +51,8 @@ int main(){
     pp::vec cs = QS.Q.get_row(1);
     bs.print("Calculated b = ");
     cs.print("Calculated c = ");
-    // std::cout << "Manually calculated b = {-0.24483, -0.24483, -1.10429, -0.77397, -1.17359, -0.36643, ...} \n";
-    // std::cout << "Manually calculated c = {0, -0.85945, 0.330312, -0.39959, 0.807137, -0.02255, 0.992084, ...} \n";
     std::cout << "Manually calculated b = {-0.08631, -0.56189, -0.89991, -1.01758, -0.88615, -0.53767, ...} \n";
     std::cout << "Manually calculated c = {-0.31705, -0.22535, -0.07845, 0.087614, 0.23232, 0.319951, ...} \n";
-    // exit(EXIT_SUCCESS);
-
 
     std::cout << "Part c: \n";
     CS CS(xs, ys);
@@ -76,12 +71,6 @@ int main(){
         myoutput_c << "\n";
     }
     myoutput_c.close();
-    // pp::vec c_bs = CS.C.get_row(0);
-    // pp::vec c_cs = CS.C.get_row(1);
-    // pp::vec c_ds = CS.C.get_row(2);
-    // c_bs.print("Calculated b = ");
-    // c_cs.print("Calculated c = ");
-    // c_ds.print("Calculated d = ");
     exit(EXIT_SUCCESS);
 return 0;
 }

@@ -41,7 +41,7 @@ public:
         C = matrix(n, 3); // Maybe size can be lowered by 1
         dxs = pp::vec(n);
         dys = pp::vec(n);
-        pp::vec bs(n), cs(n), ds(n), ps(n), B(n), D(n), B_raw(n), D_raw(n), Q(n - 1), as(n); // Last element of Q is redundant but is there so the upcoming loop becomes prettier.
+        pp::vec bs(n), cs(n), ds(n), ps(n), B(n), D(n), B_raw(n), D_raw(n), Q(n - 1), as(n);
         for (int i = 0; i < n; ++i){assert(x[i + 1] - x[i] > 0); dxs[i] = x[i + 1] - x[i]; dys[i] = y[i + 1] - y[i]; ps[i] = dys[i]/dxs[i];}
         B_raw[0] = 3*ps[0];
         Q[0] = 1;
