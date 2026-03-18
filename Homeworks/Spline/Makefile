@@ -59,7 +59,8 @@ Splines_cubic.svg: data_c.txt Makefile
 			F(x) with lines lt rgb "black" title "F(x) = sin(x)", \
 			"$<" using 4:5 with points title "Data", \
 			"$<" using 1:2 with lines title "f(x) via Spline", \
-			"$<" using 1:3 with lines title "F(x) via Spline" ;\
+			"$<" using 1:3 with lines title "F(x) via Spline", \
+			"$<" using 1:2 smooth csplines title "Cubic Spline via Gnuplot" ;\
 	' |tee log.activities |gnuplot
 
 

@@ -12,5 +12,6 @@
 		F(x) with lines lt rgb "black" title "F(x) = sin(x)", \
 		"data_c.txt" using 4:5 with points title "Data", \
 		"data_c.txt" using 1:2 with lines title "f(x) via Spline", \
-		"data_c.txt" using 1:3 with lines title "F(x) via Spline" ;\
+		"data_c.txt" using 1:3 with lines title "F(x) via Spline", \
+		"data_c.txt" using 1:2 smooth csplines title "Cubic Spline via Gnuplot" ;\
 
