@@ -7,7 +7,7 @@
 
 int main(){
     // PART A:
-    
+
     double a = 0, b = 10;
     pp::vec y_init{0, 1};
 
@@ -124,41 +124,5 @@ int main(){
         output_stable_orbit << "\n";
     }
     output_stable_orbit.close();
-
-    
-    // std::function<pp::vec(double, pp::vec)> stable_orbit = [=](double x, pp::vec y){
-    //     matrix dydx(2, 6);
-    //     matrix my(2, 6);
-
-    //     for (int i = 0; i < 6; ++i){my[i, 0] = y[2*i]; my[i, 1] = y[2*i + 1];}
-    //     for (int i = 0; i < 3; ++i){
-    //         pp::vec ri = my.get_row(i);
-    //         dydx.set_row(2*i, ri);
-    //         for (int j = 0; j < 3; ++j){
-    //             pp::vec dv{0, 0};
-    //             if (j != i){
-    //                 pp::vec dr = my.get_row(j) - ri;
-    //                 double norm = dr.norm();
-    //                 dv += dr/(norm*norm*norm);
-    //             }
-    //             dydx.set_row(2*i + 1, dv);
-    //         }
-    //     }
-    //     // std::cout << dydx.reshape(12, 1).get_row(1);
-    //     return dydx.reshape(12, 1).get_row(1) + 0*x;
-    // };
-
-    // result = driver(stable_orbit, a, b, y_init);
-    // xs = std::get<0>(result);
-    // ys = std::get<1>(result);
-
-    // outfile = "stable_orbit.txt";
-    // std::ofstream output_stable_orbit(outfile);
-    // for (int i = 0; i < (int)xs.size(); ++i){
-    //     output_stable_orbit << xs[i];
-    //     for (int j = 0; j < 12; ++j){output_stable_orbit << ", " << ys[i][0] << ", " << ys[i][1];}
-    //     output_stable_orbit << "\n";
-    // }
-    // output_stable_orbit.close();
 return 0;
 }
