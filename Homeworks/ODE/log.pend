@@ -5,6 +5,6 @@ set xlabel "x" ;\
 set ylabel "y" ;\
 set title "Pendulum with friction" ;\
 plot \
-	"lot.txt" using 1:2 with lines title "y_0. a = 1.5, b = 1. MAKE NEW LABEL" ,\
-	"lot.txt" using 1:3 with lines title "y_1. c = 3, d = 1. MAKE NEW LABEL" ;\
+	"lot.txt" using 1:2 with lines title "x for x' = 1.5x + xy (a = 1.5, b = 1)" ,\
+	"lot.txt" using 1:3 with lines title "y for y' = -3y + xy (c = 3, d = 1)" ;\
 

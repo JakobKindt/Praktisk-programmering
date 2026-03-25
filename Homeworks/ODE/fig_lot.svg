@@ -117,10 +117,10 @@
 	<path stroke='black'  d='M64.14,54.01 L64.14,422.40 L574.82,422.40 L574.82,54.01 L64.14,54.01 Z  '/></g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
-	<g id="gnuplot_plot_1" ><title>y0. a = 1.5, b = 1. MAKE NEW LABEL</title>
+	<g id="gnuplot_plot_1" ><title>x for x' = 1.5x + xy (a = 1.5, b = 1)</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(507.09,75.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
-		<text><tspan font-family="Arial" >y</tspan><tspan font-family="Arial"  font-size="9.6" dy="3.60px">0</tspan><tspan font-family="Arial"  font-size="12.0" dy="-3.60px">. a = 1.5, b = 1. MAKE NEW LABEL</tspan></text>
+		<text><tspan font-family="Arial" >x for x' = 1.5x + xy (a = 1.5, b = 1)</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -234,10 +234,10 @@
 		L565.07,416.12 L565.72,416.06 L566.38,416.00 L567.05,415.93 L567.73,415.86 L568.42,415.79 L569.12,415.71 L569.83,415.62
 		L570.56,415.53 L571.29,415.44 L572.04,415.34 L572.80,415.24 L573.58,415.13 L574.37,415.01 L574.82,414.94  '/></g>
 	</g>
-	<g id="gnuplot_plot_2" ><title>y1. c = 3, d = 1. MAKE NEW LABEL</title>
+	<g id="gnuplot_plot_2" ><title>y for y' = -3y + xy (c = 3, d = 1)</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(507.09,93.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
-		<text><tspan font-family="Arial" >y</tspan><tspan font-family="Arial"  font-size="9.6" dy="3.60px">1</tspan><tspan font-family="Arial"  font-size="12.0" dy="-3.60px">. c = 3, d = 1. MAKE NEW LABEL</tspan></text>
+		<text><tspan font-family="Arial" >y for y' = -3y + xy (c = 3, d = 1)</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">

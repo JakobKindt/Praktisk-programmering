@@ -1,0 +1,11 @@
+\
+set terminal svg ;\
+set output "fig_stable_orbit.svg" ;\
+set xlabel "x" ;\
+set ylabel "y" ;\
+set title "Stable Orbits" ;\
+plot \
+	"stable_orbit.txt" using 2:3 with lines title "Planet 1",  \
+	"stable_orbit.txt" using 4:5 with lines title "Planet 2", \
+	"stable_orbit.txt" using 6:7 with lines lc rgb(0, 0, 0) title "Planet 3" ;\
+

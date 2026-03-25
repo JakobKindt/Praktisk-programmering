@@ -1,0 +1,11 @@
+\
+set terminal svg ;\
+set output "fig_orbit.svg" ;\
+set xlabel "x" ;\
+set ylabel "y" ;\
+set title "Orbits" ;\
+plot \
+	"orbit.txt" index 0 using (1/$2)*cos($1):(1/$2)*sin($1) with lines title "eps = 0, u'(0) = 0",  \
+	"orbit.txt" index 1 using (1/$2)*cos($1):(1/$2)*sin($1) with lines title "eps = 0, u'(0) = -0.5", \
+	"orbit.txt" index 2 using (1/$2)*cos($1):(1/$2)*sin($1) with lines dt 2 title "eps = 0.01, u'(0) = -0.5" ;\
+
