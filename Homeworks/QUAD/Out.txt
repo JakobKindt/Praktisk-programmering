@@ -1,0 +1,18 @@
+Part A 
+Measured integral of sqrt(x) from 0 to 1 is 0.666954. Theoretical is 2/3. 
+Measured integral of 1/sqrt(x) from 0 to 1 is 1.99996. Theoretical is 2. 
+Measured integral of sqrt(1 - x^2) from 0 to 1 is 0.785812. Theoretical is pi/4 \simeq 0.78540. 
+Measured integral of ln(x)/sqrt(x) from 0 to 1 is -3.99992. Theoretical is -4. 
+Measured value of erf(1) is 0.84273. Theoretical is 0.84270079294971486934. 
+Part B 
+Measured integral of 1/sqrt(x) from 0 to 1 using Clenshaw-Curtis is 1.99999. Theoretical is 2. 
+Measured integral of ln(x)/sqrt(x) from 0 to 1 using Clenshaw-Curtis is -3.99987. Theoretical is -4. 
+Implementation of infinities 
+Measured integral of exp(-x) from -\infty to 0 using Clenshaw-Curtis is 0.998397. Theoretical is e \simeq 1. 
+Measured integral of exp(-x**2/2)/\sqrt(2*pi) from -\infty to \infty using Clenshaw-Curtis is 1.00203. Theoretical is e \simeq 1. 
+Counting integrand evaluations 
+The value of integral of 1/sqrt(x) from 0 to 1 is 1.99999. In Python (scipy) is 1.9999999999999984.
+ncalls for 1/sqrt(x) from 0 to 1 is 16. In Python (scipy) 231.
+The value of integral of ln(x)/sqrt(x) from 0 to 1 is -3.99987. In Python (scipy) is -4.000000000000085.
+ncalls for ln(x)/sqrt(x) from 0 to 1 is 96. In Python (scipy) 315.
+Part C 

@@ -1,0 +1,10 @@
+\
+set terminal svg ;\
+set output "fig_acc.svg" ;\
+set title "Influence of accuracy when evaluating erf(1)" ;\
+set xlabel "acc" ;\
+set ylabel "abs(measured - theoretical) of erf(1)" ;\
+set logscale xy ;\
+plot \
+	"acc.txt" using 1:3 with linespoints title "" ;\
+
