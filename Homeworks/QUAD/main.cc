@@ -59,7 +59,7 @@ int main(){
     double I4_CC = integrate_CC(f4, a, b);
     
 
-    std::cout << "Part B \n";
+    std::cout << "\n Part B \n";
     std::cout << "Measured integral of 1/sqrt(x) from 0 to 1 using Clenshaw-Curtis is " << I2_CC << ". Theoretical is 2. \n"; 
     std::cout << "Measured integral of ln(x)/sqrt(x) from 0 to 1 using Clenshaw-Curtis is " << I4_CC << ". Theoretical is -4. \n"; 
 
@@ -79,7 +79,7 @@ int main(){
     std::cout << "ncalls for ln(x)/sqrt(x) from 0 to 1 is " << ncalls4 << ". In Python (scipy) " << 315 << ".\n";
     // COMPARE NCALLS and value WITH PYTHON !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Part c
-    std::cout << "Part C \n";
+    std::cout << "\n Part C \n";
 
     double Q1, Q2, Q3, Q4, err1, err2, err3, err4;
     std::tie(Q1, err1) = integrate_with_err(f1, a, b);
@@ -90,6 +90,6 @@ int main(){
     std::cout << "Measured integral of 1/sqrt(x) from 0 to 1 is " << Q2 << ". Theoretical is 2. Measured error is " << err2 << ". Actual difference from theoretical result is " << std::abs(Q2 - 2.) << ". Thus measured err/actual err is " << err2/std::abs(Q2 - 2.) << ".\n";
     std::cout << "Measured integral of sqrt(1 - x^2) from 0 to 1 is " << Q3 << ". Theoretical is pi/4 \\simeq 0.78540. Measured error is " << err3 << ". Actual difference from theoretical result is " << std::abs(Q3 - pi/4) << ". Thus measured err/actual err is " << err3/std::abs(Q3 - pi/4) << ".\n";
     std::cout << "Measured integral of ln(x)/sqrt(x) from 0 to 1 is " << Q4 << ". Theoretical is -4. Measured error is " << err4 << ". Actual difference from theoretical result is " << std::abs(Q4 + 4.) << ". Thus measured err/actual err is " << err4/std::abs(Q4 + 4.) << ".\n";
-
+    std::cout << "This means that the estimated error is larger than the actual error which is an intended feature and it is (almost) the same order of magnitude as the actual error. \n";
 return 0;
 }
