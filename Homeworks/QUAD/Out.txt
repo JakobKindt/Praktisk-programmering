@@ -16,3 +16,7 @@ ncalls for 1/sqrt(x) from 0 to 1 is 16. In Python (scipy) 231.
 The value of integral of ln(x)/sqrt(x) from 0 to 1 is -3.99987. In Python (scipy) is -4.000000000000085.
 ncalls for ln(x)/sqrt(x) from 0 to 1 is 96. In Python (scipy) 315.
 Part C 
+Measured integral of sqrt(x) from 0 to 1 is 0.666954. Theoretical is 2/3. Measured error is 0.000451855. Actual difference from theoretical result is 0.000287242. Thus measured err/actual err is 1.57308.
+Measured integral of 1/sqrt(x) from 0 to 1 is 1.99996. Theoretical is 2. Measured error is 0.000412013. Actual difference from theoretical result is 3.84999e-05. Thus measured err/actual err is 10.7016.
+Measured integral of sqrt(1 - x^2) from 0 to 1 is 0.785812. Theoretical is pi/4 \simeq 0.78540. Measured error is 0.00107321. Actual difference from theoretical result is 0.00041433. Thus measured err/actual err is 2.59022.
+Measured integral of ln(x)/sqrt(x) from 0 to 1 is -3.99992. Theoretical is -4. Measured error is 0.000754017. Actual difference from theoretical result is 8.2941e-05. Thus measured err/actual err is 9.091.

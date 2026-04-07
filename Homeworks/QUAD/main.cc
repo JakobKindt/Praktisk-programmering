@@ -81,5 +81,15 @@ int main(){
     // Part c
     std::cout << "Part C \n";
 
+    double Q1, Q2, Q3, Q4, err1, err2, err3, err4;
+    std::tie(Q1, err1) = integrate_with_err(f1, a, b);
+    std::tie(Q2, err2) = integrate_with_err(f2, a, b);
+    std::tie(Q3, err3) = integrate_with_err(f3, a, b);
+    std::tie(Q4, err4) = integrate_with_err(f4, a, b);
+    std::cout << "Measured integral of sqrt(x) from 0 to 1 is " << Q1 << ". Theoretical is 2/3. Measured error is " << err1 << ". Actual difference from theoretical result is " << std::abs(Q1 - 2./3) << ". Thus measured err/actual err is " << err1/std::abs(Q1 - 2./3) << ".\n";
+    std::cout << "Measured integral of 1/sqrt(x) from 0 to 1 is " << Q2 << ". Theoretical is 2. Measured error is " << err2 << ". Actual difference from theoretical result is " << std::abs(Q2 - 2.) << ". Thus measured err/actual err is " << err2/std::abs(Q2 - 2.) << ".\n";
+    std::cout << "Measured integral of sqrt(1 - x^2) from 0 to 1 is " << Q3 << ". Theoretical is pi/4 \\simeq 0.78540. Measured error is " << err3 << ". Actual difference from theoretical result is " << std::abs(Q3 - pi/4) << ". Thus measured err/actual err is " << err3/std::abs(Q3 - pi/4) << ".\n";
+    std::cout << "Measured integral of ln(x)/sqrt(x) from 0 to 1 is " << Q4 << ". Theoretical is -4. Measured error is " << err4 << ". Actual difference from theoretical result is " << std::abs(Q4 + 4.) << ". Thus measured err/actual err is " << err4/std::abs(Q4 + 4.) << ".\n";
+
 return 0;
 }
