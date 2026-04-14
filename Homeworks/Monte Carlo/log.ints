@@ -1,0 +1,12 @@
+ \
+set terminal svg ;\
+set output "fig_ints.svg" ;\
+set title "Value of integral of cos(theta) for 0 <= theta <= pi/2, 0 < r < 1 via MC. Theoretical is 1." ;\
+set xlabel "Amount of sample datapoints" ;\
+set ylabel "Value of integral" ;\
+set logscale x ;\
+f(x) = pi ;\
+plot \
+	"err.txt" using 1:2 with points title "Interal value", \
+	f(x) with lines dashtype 2 linecolor rgb "#000000" title "Theoretical" ;\
+

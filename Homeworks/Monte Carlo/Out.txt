@@ -1,0 +1,14 @@
+Part A 
+Measured integral of (1 - cos(x)cos(y)cos(z))^-1/pi^3 from 0 to pi in all dimensions is: 1.39386. With an error of: 0.00706349. Theoretical is 1.3932039296856768591842462603255. 
+Thus, the percensive deviation is 0.0470663%. With an error of: 0.506996%.
+
+
+Part B 
+means = {2.77432, 2.75062} 
+means = {3.11134, 3.10121} 
+means = {3.13713, 3.13403} 
+means = {3.14053, 3.1414} 
+means = {3.14154, 3.14152} 
+means = {3.14158, 3.14158} 
+Uncertainties with this method has been made smaller by a factor of roughly 10. However, now the estimated errors are generally lower than the actual errors which is problematic. 
+The error seemingly still follows a somewhat 1/sqrt(N) dependence but convergence faster. 
