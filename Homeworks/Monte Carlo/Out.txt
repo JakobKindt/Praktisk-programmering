@@ -1,14 +1,17 @@
 Part A 
-Measured integral of (1 - cos(x)cos(y)cos(z))^-1/pi^3 from 0 to pi in all dimensions is: 1.39386. With an error of: 0.00706349. Theoretical is 1.3932039296856768591842462603255. 
-Thus, the percensive deviation is 0.0470663%. With an error of: 0.506996%.
+Measured integral of (1 - cos(x)cos(y)cos(z))^-1/pi^3 from 0 to pi in all dimensions is: 1.39095. With an error of: 0.010987. Theoretical is 1.3932039296856768591842462603255. 
+Thus, the percensive deviation is -0.16146% with an error of: 0.788612%.
+|measured - theory|/(estimated err) = 0.20474. 
+|measured - theory| = 0.00224947. 
 
 
 Part B 
-means = {2.77432, 2.75062} 
-means = {3.11134, 3.10121} 
-means = {3.13713, 3.13403} 
-means = {3.14053, 3.1414} 
-means = {3.14154, 3.14152} 
-means = {3.14158, 3.14158} 
-Uncertainties with this method has been made smaller by a factor of roughly 10. However, now the estimated errors are generally lower than the actual errors which is problematic. 
+Uncertainties with this method has been made smaller by a factor of roughly 10. However, now the estimated errors are generally lower than the actual errors which is probably because the estimated errors are systematic error and not the actual error of the method.
 The error seemingly still follows a somewhat 1/sqrt(N) dependence but convergence faster. 
+
+
+Part C 
+Measured integral of unit circle: 3.14159. With an error of: 1.53888e-06. Theoretical is pi \simeq 3.1415926535897932384626433. 
+Thus, the percensive deviation is 3.42753e-05% with an error of: 4.8984e-05%.
+|measured - theory|/(estimated err) = 0.699724. 
+|measured - theory| = 1.07679e-06. 

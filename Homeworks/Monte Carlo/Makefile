@@ -28,7 +28,7 @@ fig_err.svg: err.txt Makefile
 	echo '\
 	set terminal svg ;\
 	set output "$@" ;\
-	set title "Error of integral of cos(theta) for 0 <= theta <= pi/2, 0 < r < 1 via MC" ;\
+	set title "Error of integral unit circle via MC" ;\
 	set xlabel "Amount of sample datapoints" ;\
 	set ylabel "err of integral" ;\
 	set logscale x ;\
@@ -46,13 +46,13 @@ fig_ints.svg: err.txt Makefile
 	echo ' \
 	set terminal svg ;\
 	set output "$@" ;\
-	set title "Value of integral of cos(theta) for 0 <= theta <= pi/2, 0 < r < 1 via MC. Theoretical is 1." ;\
+	set title "Value of integral of unit circle" ;\
 	set xlabel "Amount of sample datapoints" ;\
 	set ylabel "Value of integral" ;\
 	set logscale x ;\
 	f(x) = pi ;\
 	plot \
-		"$<" using 1:2 with points title "Interal value", \
+		"$<" using 1:2:3 with yerrorbars title "Interal value", \
 		f(x) with lines dashtype 2 linecolor rgb "#000000" title "Theoretical" ;\
 	' |tee log.ints|gnuplot
 
@@ -61,7 +61,7 @@ fig_quasi_err.svg: quasi_err.txt Makefile
 	echo '\
 	set terminal svg ;\
 	set output "$@" ;\
-	set title "Error of integral of cos(theta) for 0 <= theta <= pi/2, 0 < r < 1 via MC" ;\
+	set title "Error of integral of unit circle via quasi MC" ;\
 	set xlabel "Amount of sample datapoints" ;\
 	set ylabel "err of integral" ;\
 	set logscale x ;\
@@ -78,13 +78,13 @@ fig_quasi_ints.svg: quasi_err.txt Makefile
 	echo ' \
 	set terminal svg ;\
 	set output "$@" ;\
-	set title "Value of integral of cos(theta) for 0 <= theta <= pi/2, 0 < r < 1 via MC. Theoretical is 1." ;\
+	set title "Value of integral of unit circle" ;\
 	set xlabel "Amount of sample datapoints" ;\
 	set ylabel "Value of integral" ;\
 	set logscale x ;\
 	f(x) = pi ;\
 	plot \
-		"$<" using 1:2 with points title "Interal value", \
+		"$<" using 1:2:3 with yerrorbars title "Interal value", \
 		f(x) with lines dashtype 2 linecolor rgb "#000000" title "Theoretical" ;\
 	' |tee log.quasi_ints|gnuplot
 

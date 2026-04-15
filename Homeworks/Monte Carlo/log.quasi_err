@@ -1,7 +1,7 @@
 \
 set terminal svg ;\
 set output "fig_quasi_err.svg" ;\
-set title "Error of integral of cos(theta) for 0 <= theta <= pi/2, 0 < r < 1 via MC" ;\
+set title "Error of integral of unit circle via quasi MC" ;\
 set xlabel "Amount of sample datapoints" ;\
 set ylabel "err of integral" ;\
 set logscale x ;\
