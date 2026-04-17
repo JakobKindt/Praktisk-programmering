@@ -1,0 +1,35 @@
+Part A 
+Measured integral of volume ellipsoid with semi-axis a = 1, b = 2 and c = 3: 25.144. With an error of: 0.0239727. Theoretical is 25.1327.
+Thus, the percensive deviation is 0.0449246% with an error of: 0.0953844%.
+|measured - theory|/(estimated err) = 0.470984. 
+|measured - theory| = 0.0112908. 
+
+
+Part B 
+Integration via. lcg 
+Measured integral of (1 - cos(x)cos(y)cos(z))^-1/pi^3 from 0 to pi in all dimensions is: 1.42043. With an error of: 0.0242833. Theoretical is 1.3932039296856768591842462603255. 
+Thus, the percensive deviation is 1.95438% with an error of: 1.74298%.
+|measured - theory|/(estimated err) = 1.12129. 
+|measured - theory| = 0.0272285. 
+
+Integration via. built-in generator 
+Measured integral of (1 - cos(x)cos(y)cos(z))^-1/pi^3 from 0 to pi in all dimensions is: 1.39386. With an error of: 0.00706349. Theoretical is 1.3932039296856768591842462603255. 
+Thus, the percensive deviation is 0.0470663% with an error of: 0.506996%.
+|measured - theory|/(estimated err) = 0.0928337. 
+|measured - theory| = 0.00065573. 
+
+Integration via. quasi random sequence 
+Measured integral of (1 - cos(x)cos(y)cos(z))^-1/pi^3 from 0 to pi in all dimensions is: inf. With an error of: -nan. Theoretical is 1.3932039296856768591842462603255. 
+Thus, the percensive deviation is inf% with an error of: -nan%.
+|measured - theory|/(estimated err) = -nan. 
+|measured - theory| = inf. 
+I also investigated how the error scales here 
+Uncertainties with this method has been made smaller by a factor of roughly 10. However, now the estimated errors are generally lower than the actual errors which is probably because the estimated errors are systematic error and not the actual error of the method.
+The error seemingly still follows a somewhat 1/sqrt(N) dependence but convergence faster. The 1/sqrt(N) dependence is clearer when the built-in random number generator is used. 
+
+
+Part C 
+Measured integral of unit circle: 3.1416. With an error of: 1.61144e-06. Theoretical is pi \simeq 3.1415926535897932384626433. 
+Thus, the percensive deviation is 8.87467e-05% with an error of: 5.12938e-05%.
+|measured - theory|/(estimated err) = 1.73016. 
+|measured - theory| = 2.78806e-06. 

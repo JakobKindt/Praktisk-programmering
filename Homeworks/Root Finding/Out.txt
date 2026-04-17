@@ -1,0 +1,38 @@
+Part A 
+sols for Rosenbrock's valley = {{0.999936, 0.999853}}
+sols for Himmelblau's function = {{-3.77932, -3.28321}
+{-2.80513, 3.13131}
+{-3.07307, -0.0813402}
+{0.086679, 2.88426}
+{3.58444, -1.84821}
+{-0.127958, -1.95374}
+{-0.270845, -0.923038}
+{3, 2}
+{3.38517, 0.0738566}}
+However, these also include the saddlepoints. The points which are actually local minima are:
+{-3.77932, -3.28321} 
+{-2.80513, 3.13131} 
+{3.58444, -1.84821} 
+{-0.270845, -0.923038} 
+{3, 2} 
+Four of which are global minima where the function is 0. 
+
+Part B 
+E = {-0.500038} 
+E = {-0.499988} 
+E = {-0.499991} 
+E = {-0.500038} 
+E = {-0.501623} 
+E = {-0.499997} 
+E = {-0.5} 
+E = {-0.500038} 
+E = {-0.500921} 
+E = {-0.499978} 
+E = {-0.498042} 
+E = {-0.48215} 
+E = {-0.387499} 
+E = {2.35443} 
+E = {-0.424362} 
+E = {-0.496452} 
+E = {-0.500053} 
+From the figures it becomes evident that rmin needs to be of the order of 1e-3, acc and eps of order 1e-2 and rmax of 10.

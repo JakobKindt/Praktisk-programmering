@@ -1,0 +1,12 @@
+ \
+set terminal svg ;\
+set output "fig_quasi_ints.svg" ;\
+set title "Value of integral of unit circle" ;\
+set xlabel "Amount of sample datapoints" ;\
+set ylabel "Value of integral" ;\
+set logscale x ;\
+f(x) = pi ;\
+plot \
+	"quasi_err.txt" using 1:2:3 with yerrorbars title "Interal value", \
+	f(x) with lines dashtype 2 linecolor rgb "#000000" title "Theoretical" ;\
+

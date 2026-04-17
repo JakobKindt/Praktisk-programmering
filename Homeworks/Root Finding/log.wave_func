@@ -1,0 +1,14 @@
+\
+set terminal svg ;\
+set output "fig_conv_rmax.svg" ;\
+set title "Solution to radial SE for hydrogen - Investigation of influence of rmax" ;\
+set xlabel "r" ;\
+set ylabel "wave function" ;\
+f(x) = x*exp(-x) ;\
+plot \
+	"conv_rmax.txt" using 1:2 index 0 with lines title "rmax = 1", \
+	"conv_rmax.txt" using 1:2 index 1 with lines title "rmax = 3", \
+	"conv_rmax.txt" using 1:2 index 2 with lines title "rmax = 5", \
+	"conv_rmax.txt" using 1:2 index 3 with lines title "rmax = 10", \
+	f(x) with lines dashtype 2 linecolor rgb "#000000" title "Theoretical solution" ;\
+
