@@ -1,0 +1,4 @@
+Part A 
+Starting at {20, 20}, a found minimum of Rosenbrock's valley function is 8.85212e-10 at {1.00003, 1.00006} using 75 counts.
+Starting at {20, 20}, a found minimum of Himmelblau's function is 2.50207e-10 at {3, 2} using 9 counts.
+Both of the functions do have a theoretical global minimum of 0. For the Rosenbrock's valley function is occurs at (1, 1) and for the Himmelblau's function it occurs at (3, 2), (-2.805, 3.1313), (-3.779, -3.283) and (3.584, -1.848).
