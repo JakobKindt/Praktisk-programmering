@@ -45,6 +45,7 @@ public:
     
     // utility
     double norm() const;
+    vec push_back(const double a);
 
     vec& project(const vec& w, bool demand_same_size = true);
 

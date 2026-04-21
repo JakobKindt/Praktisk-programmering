@@ -52,6 +52,14 @@ double vec::norm() const{
     return std::sqrt(sum);
 }
 
+vec vec::push_back(const double a){
+    vec v(size() + 1);
+    for (int i = 0; i < size(); ++i){v[i] = data[i];}
+    v[size()] = a;
+    *this = v;
+    return *this;
+}
+
 vec& vec::project(const vec& w, bool demand_same_size){
     int n = size(), m = w.size();
     if (n != m && demand_same_size) {throw std::runtime_error("Dimensions mismatches");}

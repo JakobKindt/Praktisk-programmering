@@ -2,7 +2,7 @@ CXXFLAGS = -Wall -Wextra -std=c++23 -O
 LINK.o = $(CXX) $(LDFLAGS) # This does the same a the line below
 LDLIBS = -lstdc++ -lm #L is for link
 
-# all: Out.txt fig_wave_func.svg fig_conv_acc.svg fig_conv_eps.svg fig_conv_rmin.svg fig_conv_rmax.svg
+all: Out.txt fig_exp_fit.svg
 
 Out.txt : main
 	./main > Out.txt 
@@ -28,6 +28,19 @@ QR-factorization : QR-factorization.o matrix.o vector.o
 
 QR-factorization.o : QR-factorization.cc QR-factorization.h matrix.h vector.h
 
+
+fig_exp_fit.svg : exp_data.txt Makefile
+	echo '\
+	set terminal svg ;\
+	set output "$@" ;\
+	set xlabel "Energy [GeV]" ;\
+	set ylabel "Signal [Arbitrary units]" ;\
+	m = 125.972; gamma = 2.0864; A = 9.87649 ;\
+	f(x) = A/((x - m)*(x - m) + gamma*gamma/4) ;\
+	plot \
+		"$<" using 1:2:3 with yerrorbars title "Data", \
+		f(x) with lines title "Fit using minimization" ;\
+	'|tee log.fig_exp_fit|gnuplot
 
 .PHONY:clean 
 clean: # Forces to remove the stuff listed

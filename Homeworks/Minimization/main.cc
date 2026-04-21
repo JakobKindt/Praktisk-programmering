@@ -2,7 +2,8 @@
 #include<cstdio>
 #include"QR-factorization.h"
 #include"min.h"
-#include<fstream>
+#include <fstream>
+#include <sstream>
 
 int main(){
     // PART A:
@@ -20,43 +21,42 @@ int main(){
 
     // ----------------------------------------------
     std::cout << "\n\nPart B \n";
-    std::function<double(pp::vec)> D = [] (pp::vec x){
+    std::ifstream file("exp_data.txt");
+    std::string line;
+    pp::vec energies(0);
+    pp::vec signals(0);
+    pp::vec errs(0);
+
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        double e, s, er;
+        if (iss >> e >> s >> er) {
+            energies.push_back(e);
+            signals.push_back(s);
+            errs.push_back(er);
+        }
+    }
+
+
+    double E;
+    std::function<double(pp::vec)> F = [&] (pp::vec x){return x[2]/((E - x[0])*(E - x[0]) + x[1]*x[1]/4.);}; // The Breit-Wigner function
+    std::function<double(pp::vec)> D = [&] (pp::vec x){
         double sum = 0;
-        for (int i = 0; i < x.size(); ++i){
-            sum += (x[0] - x[1])*(x[0] - x[1])/x[2]/x[2];
+        for (int i = 0; i < energies.size(); ++i){
+            E = energies[i];
+            sum += (F(x) - signals[i])*(F(x) - signals[i])/errs[i]/errs[i];
         }
         return sum;}; // The deviation function 
     
-    pp::vec energy(0);
-    pp::vec signal(0);
-    pp::vec err(0);
-    // var signal = new genlist<double>();
-    // var error  = new genlist<double>();
-    // var separators = new char[] {' ','\t'};
-    // var options = StringSplitOptions.RemoveEmptyEntries;
-    do{
-        std::string line = Console.In.ReadLine();
-        if (line == null){break;}
-        std::string[] words = line.Split(seperatores, options);
-        energy.push_back(double.Parse(word[0]));
-        signal.push_back(double.Parse(words[1]));
-        err.push_back(double.Parse(words[2]));
-    }while(true);
-    std::cout << energy << "\n";
-    std::cout << signal << "\n";
-    std::cout << err << "\n";
-    // var energy = new genlist<double>();
-    // var signal = new genlist<double>();
-    // var error  = new genlist<double>();
-    // var separators = new char[] {' ','\t'};
-    // var options = StringSplitOptions.RemoveEmptyEntries;
-    // do{
-    //     std::string line = Console.In.ReadLine();
-    //     if (line == null){break;}
-    //     string[] words = line.Split(separators, options);
-    //     energy.add(double.Parse(words[0]));
-    //     signal.add(double.Parse(words[1]));
-    //     error .add(double.Parse(words[2]));
-    // }while(true);
+    
+    // start = pp::vec{125, 4, 12};
+    start = pp::vec{125, 4, 15};
+    min = newton(D, start, 1e-3, 10000);
+    std::cout << "Starting at " << start << ", a found minimum of the deviation function is " << std::get<0>(min) << " at " << std::get<1>(min) << " (mass, gamma, A) using " << std::get<2>(min) << " counts.\n";
+    std::cout << "Note that the method is not that stable since if we change the starting condition slightly, we get: \n";
+    start = pp::vec{130, 4, 15};
+    min = newton(D, start, 1e-3, 10000);
+    std::cout << "Starting at " << start << ", a found minimum of the deviation function is " << std::get<0>(min) << " at " << std::get<1>(min) << " (mass, gamma, A) using " << std::get<2>(min) << " counts (i.e. max counts).\n";
+    
 return 0;
 }
