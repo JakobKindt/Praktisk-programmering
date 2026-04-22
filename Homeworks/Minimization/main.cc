@@ -37,7 +37,6 @@ int main(){
         }
     }
 
-
     double E;
     std::function<double(pp::vec)> F = [&] (pp::vec x){return x[2]/((E - x[0])*(E - x[0]) + x[1]*x[1]/4.);}; // The Breit-Wigner function
     std::function<double(pp::vec)> D = [&] (pp::vec x){
@@ -58,5 +57,24 @@ int main(){
     min = newton(D, start, 1e-3, 10000);
     std::cout << "Starting at " << start << ", a found minimum of the deviation function is " << std::get<0>(min) << " at " << std::get<1>(min) << " (mass, gamma, A) using " << std::get<2>(min) << " counts (i.e. max counts).\n";
     
+
+    // ----------------------------------------------
+    std::cout << "\n\nPart C \n";
+    std::cout << "Here we investigate the central instead of forward finite difference approximation for the derivatives.\n";
+    start = pp::vec{20, 20};
+    min = newton_central(RV, start);
+    std::cout << "Starting at " << start << ", a found minimum of Rosenbrock's valley function is " << std::get<0>(min) << " at " << std::get<1>(min) << " using " << std::get<2>(min) << " counts.\n";
+    min = newton_central(Hf, start);
+    std::cout << "Starting at " << start << ", a found minimum of Himmelblau's function is " << std::get<0>(min) << " at " << std::get<1>(min) << " using " << std::get<2>(min) << " counts.\n";
+    std::cout << "Both of the functions do have a theoretical global minimum of 0. For the Rosenbrock's valley function is occurs at (1, 1) and for the Himmelblau's function it occurs at (3, 2), (-2.805, 3.1313), (-3.779, -3.283) and (3.584, -1.848).\n";
+    start = pp::vec{125, 4, 15};
+    min = newton_central(D, start, 1e-3, 10000);
+    std::cout << "Starting at " << start << ", a found minimum of the deviation function is " << std::get<0>(min) << " at " << std::get<1>(min) << " (mass, gamma, A) using " << std::get<2>(min) << " counts.\n";
+    start = pp::vec{130, 4, 15};
+    min = newton_central(D, start, 1e-3, 10000);
+    std::cout << "Starting at " << start << ", a found minimum of the deviation function is " << std::get<0>(min) << " at " << std::get<1>(min) << " (mass, gamma, A) using " << std::get<2>(min) << " counts (i.e. max counts).\n";
+    
+    std::cout << "Comparison: The new method produces very similar results although the found minima for Rosenbrock's valley function and Himmelblau's function is a factor of 2-3 times closer to 0 when using the central method. This could just be the case for these two functions and my initial guess for the minimas' location. For the fitting to the data it produces a similar fit although it needs many more iterations (~738 to ~6).\n";
+
 return 0;
 }

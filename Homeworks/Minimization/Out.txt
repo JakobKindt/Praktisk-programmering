@@ -1,10 +1,20 @@
 Part A 
-Starting at {20, 20}, a found minimum of Rosenbrock's valley function is 8.85212e-10 at {1.00003, 1.00006} using 75 counts.
-Starting at {20, 20}, a found minimum of Himmelblau's function is 2.50207e-10 at {3, 2} using 9 counts.
+Starting at {20, 20}, a found minimum of Rosenbrock's valley function is 3.24741e-10 at {1.00002, 1.00003} using 74 counts.
+Starting at {20, 20}, a found minimum of Himmelblau's function is 2.50138e-10 at {3, 2} using 9 counts.
 Both of the functions do have a theoretical global minimum of 0. For the Rosenbrock's valley function is occurs at (1, 1) and for the Himmelblau's function it occurs at (3, 2), (-2.805, 3.1313), (-3.779, -3.283) and (3.584, -1.848).
 
 
 Part B 
-Starting at {125, 4, 15}, a found minimum of the deviation function is 26.8695 at {125.972, 2.0864, 9.87649} (mass, gamma, A) using 6 counts.
+Starting at {125, 4, 15}, a found minimum of the deviation function is 26.8695 at {125.972, 2.08652, 9.87703} (mass, gamma, A) using 6 counts.
 Note that the method is not that stable since if we change the starting condition slightly, we get: 
-Starting at {130, 4, 15}, a found minimum of the deviation function is 43.4917 at {129.929, 0.047425, 1.26854} (mass, gamma, A) using 10000 counts (i.e. max counts).
+Starting at {130, 4, 15}, a found minimum of the deviation function is 43.4917 at {129.929, 0.0470701, 1.26806} (mass, gamma, A) using 10000 counts (i.e. max counts).
+
+
+Part C 
+Here we investigate the central instead of forward finite difference approximation for the derivatives.
+Starting at {20, 20}, a found minimum of Rosenbrock's valley function is 1.29784e-10 at {0.999989, 0.999977} using 73 counts.
+Starting at {20, 20}, a found minimum of Himmelblau's function is 1.64178e-10 at {3, 2} using 9 counts.
+Both of the functions do have a theoretical global minimum of 0. For the Rosenbrock's valley function is occurs at (1, 1) and for the Himmelblau's function it occurs at (3, 2), (-2.805, 3.1313), (-3.779, -3.283) and (3.584, -1.848).
+Starting at {125, 4, 15}, a found minimum of the deviation function is 26.8695 at {125.972, 2.08633, 9.8762} (mass, gamma, A) using 738 counts.
+Starting at {130, 4, 15}, a found minimum of the deviation function is 43.4917 at {129.929, 0.0464639, 1.26827} (mass, gamma, A) using 10000 counts (i.e. max counts).
+Comparison: The new method produces very similar results although the found minima for Rosenbrock's valley function and Himmelblau's function is a factor of 2-3 times closer to 0 when using the central method. This could just be the case for these two functions and my initial guess for the minimas' location. For the fitting to the data it produces a similar fit although it needs many more iterations (~738 to ~6).

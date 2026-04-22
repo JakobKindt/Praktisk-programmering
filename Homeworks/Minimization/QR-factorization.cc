@@ -1,6 +1,6 @@
 #include"QR-factorization.h"
 
-pp::vec QR::solve(pp::vec& b){
+pp::vec QR::solve(pp::vec b){
     if (det() == 0){throw std::runtime_error("Determinant is 0");}
     pp::vec v(b.size());
     v = Q.T()*b;

@@ -26,7 +26,7 @@ public:
             R[i, i] = dot(Q.get_col(i), a);
         }
       }
-   pp::vec solve(pp::vec&);
+   pp::vec solve(pp::vec);
    double det();
    matrix inverse();
    matrix R_inverse();
