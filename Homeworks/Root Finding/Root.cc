@@ -53,15 +53,15 @@ matrix jacobian(std::function<pp::vec(pp::vec)>& f, pp::vec& x){
 }
 
 
-matrix broyden(std::function<pp::vec(pp::vec)>& f, pp::vec& x){
-	int dim = x.size(), s = 0;
-	double max = x[s];
-	for (int i = 0; i < dim; ++i){if (x[i] > max){s = i; max = x[i];}}
-	pp::vec dx(dim);
-	dx += std::max(max, 1.)*std::pow(2, -26);
-	pp::vec fx = f(x);
-	return jacobian(f, x, fx, dx);
-}
+// matrix broyden(std::function<pp::vec(pp::vec)>& f, pp::vec& x){
+// 	int dim = x.size(), s = 0;
+// 	double max = x[s];
+// 	for (int i = 0; i < dim; ++i){if (x[i] > max){s = i; max = x[i];}}
+// 	pp::vec dx(dim);
+// 	dx += std::max(max, 1.)*std::pow(2, -26);
+// 	pp::vec fx = f(x);
+// 	return jacobian(f, x, fx, dx);
+// }
 
 
 

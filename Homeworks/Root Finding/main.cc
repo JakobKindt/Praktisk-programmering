@@ -60,7 +60,6 @@ void make_outfile(std::string& name, int n){
         if (n == 2){r_min = rmins[j];}
         if (n == 3){r_max = rmaxs[j];}
         x = newton(func, start, 1e-3);
-        x.print("E = ");
         E = x[0];
         std::tuple<std::vector<double>, std::vector<pp::vec>> result = driver(pend, r_min, r_max, y_init);
         std::vector<double> xs = std::get<0>(result);
@@ -137,7 +136,6 @@ int main(){
     
     pp::vec start{-2}, x{1};
     x = newton(func, start, 1e-3);
-    x.print("E = ");
     E = x[0];
     std::tuple<std::vector<double>, std::vector<pp::vec>> result = driver(pend, r_min, r_max, y_init);
     std::vector<double> xs = std::get<0>(result);
