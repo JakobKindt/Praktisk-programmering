@@ -1,0 +1,6 @@
+Part A and B 
+lr = 0.025
+-0.256762
+
+
+Part B 
