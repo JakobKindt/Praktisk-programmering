@@ -1,0 +1,9 @@
+\
+set terminal svg ;\
+set output "fig_fit_c.svg" ;\
+set xlabel "x" ;\
+set ylabel "y" ;\
+set title "4 neurons fit to cos(5*x - 1) * exp(-x*x). Too complex analytical F(x) to implement" ;\
+plot \
+	"data.txt" using 1:2 index 0 with lines title "Fit to f" ;\
+

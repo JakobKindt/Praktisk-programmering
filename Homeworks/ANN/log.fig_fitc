@@ -1,0 +1,12 @@
+\
+set terminal svg ;\
+set output "fig_fitc.svg" ;\
+set xlabel "x" ;\
+set ylabel "y" ;\
+set title "4 neurons fit to d^2y/dx^2 - 3*dy/dx + 2*y + x = 0, alpha = beta = 100 and y(0) = 1/2, dy/dx(0) = 0" ;\
+f(x) = -0.75*exp(2*x) + 2*exp(x) - x*0.5 - 0.75 ;\
+plot \
+	"data2.txt" using 1:2 index 0 with lines title "Training from -1 to 1", \
+	"data2.txt" using 1:2 index 1 with lines title "Training from -0.5 to 0.5", \
+	f(x) with lines title "Analytical" ;\
+

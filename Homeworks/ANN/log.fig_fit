@@ -1,14 +1,12 @@
 \
 set terminal svg ;\
-set output "fig_fit_antiderivative.svg" ;\
+set output "fig_fit.svg" ;\
 set xlabel "x" ;\
 set ylabel "y" ;\
-set title "4 neurons fit to cos(5*x - 1) * exp(-x*x). Too complex analytical F(x) to implement" ;\
+set title "4 neurons fit to cos(5*x - 1) * exp(-x*x)" ;\
 f(x) = cos(5*x - 1) * exp(-x*x) ;\
-df(x) = -5*sin(5*x - 1)*exp(-x*x) - 2*x*f(x) ;\
-ddf(x) = -25*cos(5*x - 1)*exp(-x*x) + 20*x*sin(5*x - 1)*exp(-x*x) + (4*x*x - 2)*f(x) ;\
 plot \
-	"data.txt" using 1:2 index 0 with lines title "Fit to f", \
-	"data.txt" using 1:3 index 0 with lines title "Fit to F", \
+	"data.txt" using 1:2 index 0 with lines title "Fit", \
+	"data.txt" using 1:2 index 1 with points title "Trainng data", \
 	f(x) with lines title "Analytical f(x)" ;\
 

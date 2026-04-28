@@ -12,8 +12,6 @@ int main(){
     for (int i = 0; i < xs_train.size(); ++i){ys_train[i] = f(xs_train[i]);}
     ann B(4, 1e-1, 1e-1); // Neurons, initial learning rate and threshold for norm of gradient before stopping prematurely
     B.train(xs_train, ys_train);
-    // std::cout << B.P << "\n";
-    std::cout << B.response(1) << "\n";
     std::string outfile = "data.txt";
     std::ofstream myoutput(outfile);
     double x, y;
@@ -27,130 +25,38 @@ int main(){
     for (int i = 0; i < xs_train.size(); i++){
         x = xs_train[i];
         y = ys_train[i];
-        // y = B.response(x);
         myoutput << x << " " << y << "\n";
     }
     myoutput.close();
-    // ----------------------------------------------
-    std::cout << "\n\nPart B \n";
+    // ------------------------------------------------------------------------------------------------------------------------------------------------
+    std::cout << "\n\nPart C \n";
+
+    N = 120;
+    xs_plot = pp::linspace(-1, 1, N);
+    xs_train = pp::linspace(-1, 1 + 2./N, N);
+    std::function<double(pp::vec&)> Phi = [](pp::vec& z){ // z[0] = x, z[1] = y, z[2] = y', z[3] = y''
+        return z[3] - 3*z[2] + 2*z[1] + z[0]; // Theoretical solution c_1e^2x + c_2e^3x - x/6 - 5/36
+    };
+    annc C(4, 1e-2, 1e-2, 0, 1./2, 0); // Neurons, initial learning rate and threshold for norm of gradient before stopping prematurely // int n, double lr, double tol, double c, double yc, double dyc
+    C.train(xs_train, Phi);
+
+    std::string outfile2 = "data2.txt";
+    std::ofstream myoutput2(outfile2);
+    for (int i = 0; i < xs_plot.size(); i++){
+        x = xs_plot[i];
+        res = C.total_response(x); // f, F, df, ddf
+        myoutput2 << x << " " << res[0] << " " << res[1] << " " << res[2] << " " << res[3] << "\n";
+    }
+    myoutput2 << "\n\n";
+    xs_train = pp::linspace(-0.5, 0.5 + 2./N, N); // Smaller training set
+    annc D(4, 1e-2, 1e-2, 0, 1./2, 0); // Neurons, initial learning rate and threshold for norm of gradient before stopping prematurely // int n, double lr, double tol, double c, double yc, double dyc
+    D.train(xs_train, Phi);
+    for (int i = 0; i < xs_plot.size(); i++){
+        x = xs_plot[i];
+        res = D.total_response(x); // f, F, df, ddf
+        myoutput2 << x << " " << res[0] << " " << res[1] << " " << res[2] << " " << res[3] << "\n";
+    }
+    myoutput2.close();
+    std::cout << "After investigating a bit it turns out that the initial (random) guess for the optimizable parameters have a big influence. So does what interval we are looking at and the number of nodes, so this method is rather unstable when it comes to solving differential equations with only one (or two) initial conditions. \n";
 return 0;
 }
-
-// int main(){
-//     // PART A:
-//     std::cout << "Part A \n";
-//     std::function<double(double)> f = [] (double x){return std::cos(5*x - 1)*std::exp(-x*x);}; // Test function
-//     int N = 60;
-//     pp::vec xs_train = pp::linspace(-1, 1 + 2./N, N), xs_plot = pp::linspace(-3., 3., N);
-//     pp::vec ys_train(xs_train.size()), ys_plot(xs_plot.size());
-//     for (int i = 0; i < xs_train.size(); ++i){ys_train[i] = f(xs_train[i]);}
-//     ann B(4, 1e-1, 1e-1); // Neurons, initial learning rate and threshold for norm of gradient before stopping prematurely
-//     B.train(xs_train, ys_train);
-//     B.p.print("p = ");
-//     B.P.print("P = ");
-//     // std::cout << B.P << "\n";
-//     std::cout << B.response(1) << "\n";
-//     std::string outfile = "data.txt";
-//     std::ofstream myoutput(outfile);
-//     double x, y;
-//     for (int i = 0; i < xs_plot.size(); i++){
-//         x = xs_plot[i];
-//         y = B.response(x);
-//         myoutput << x << " " << y << "\n";
-//     }
-//     myoutput << "\n\n";
-//     for (int i = 0; i < xs_train.size(); i++){
-//         x = xs_train[i];
-//         y = ys_train[i];
-//         // y = B.response(x);
-//         myoutput << x << " " << y << "\n";
-//     }
-//     myoutput.close();
-//     // ----------------------------------------------
-//     std::cout << "\n\nPart B \n";
-// return 0;
-// }
-
-    // for (int i = 0; i < xs_plot.size(); ++i){std::cout << xs_plot[i] << " ";}
-    // pp::vec start{20, 20};
-    // std::tuple<double, pp::vec, int> min = newton(RV, start);
-    // std::cout << "Starting at " << start << ", a found minimum of Rosenbrock's valley function is " << std::get<0>(min) << " at " << std::get<1>(min) << " using " << std::get<2>(min) << " counts.\n";
-    // matrix A{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-    // A.print("A = ");
-    // A.reshape(9, 1);
-    // A.print("A = ");
-    // std::cout << "A[2, 0] = " << A[2, 0] << "\n";
-
-// int main(){
-//     // PART A:
-//     std::cout << "Part A \n";
-//     std::function<double(pp::vec)> RV = [] (pp::vec x){return (1. - x[0])*(1. - x[0]) + 100.*(x[1] - x[0]*x[0])*(x[1] - x[0]*x[0]);}; // Rosenbrock's valley function
-    
-//     std::function<double(pp::vec)> Hf = [] (pp::vec x){return (x[0]*x[0] + x[1] - 11.)*(x[0]*x[0] + x[1] - 11.) + (x[0] + x[1]*x[1] - 7.)*(x[0] + x[1]*x[1] - 7.);}; // Himmelblau's function
-    
-//     pp::vec start{20, 20};
-//     std::tuple<double, pp::vec, int> min = newton(RV, start);
-//     std::cout << "Starting at " << start << ", a found minimum of Rosenbrock's valley function is " << std::get<0>(min) << " at " << std::get<1>(min) << " using " << std::get<2>(min) << " counts.\n";
-//     min = newton(Hf, start);
-//     std::cout << "Starting at " << start << ", a found minimum of Himmelblau's function is " << std::get<0>(min) << " at " << std::get<1>(min) << " using " << std::get<2>(min) << " counts.\n";
-//     std::cout << "Both of the functions do have a theoretical global minimum of 0. For the Rosenbrock's valley function is occurs at (1, 1) and for the Himmelblau's function it occurs at (3, 2), (-2.805, 3.1313), (-3.779, -3.283) and (3.584, -1.848).\n";
-
-//     // ----------------------------------------------
-//     std::cout << "\n\nPart B \n";
-//     std::ifstream file("exp_data.txt");
-//     std::string line;
-//     pp::vec energies(0);
-//     pp::vec signals(0);
-//     pp::vec errs(0);
-
-//     while (std::getline(file, line)) {
-//         std::istringstream iss(line);
-//         double e, s, er;
-//         if (iss >> e >> s >> er) {
-//             energies.push_back(e);
-//             signals.push_back(s);
-//             errs.push_back(er);
-//         }
-//     }
-
-//     double E;
-//     std::function<double(pp::vec)> F = [&] (pp::vec x){return x[2]/((E - x[0])*(E - x[0]) + x[1]*x[1]/4.);}; // The Breit-Wigner function
-//     std::function<double(pp::vec)> D = [&] (pp::vec x){
-//         double sum = 0;
-//         for (int i = 0; i < energies.size(); ++i){
-//             E = energies[i];
-//             sum += (F(x) - signals[i])*(F(x) - signals[i])/errs[i]/errs[i];
-//         }
-//         return sum;}; // The deviation function 
-    
-    
-//     // start = pp::vec{125, 4, 12};
-//     start = pp::vec{125, 4, 15};
-//     min = newton(D, start, 1e-3, 10000);
-//     std::cout << "Starting at " << start << ", a found minimum of the deviation function is " << std::get<0>(min) << " at " << std::get<1>(min) << " (mass, gamma, A) using " << std::get<2>(min) << " counts.\n";
-//     std::cout << "Note that the method is not that stable since if we change the starting condition slightly, we get: \n";
-//     start = pp::vec{130, 4, 15};
-//     min = newton(D, start, 1e-3, 10000);
-//     std::cout << "Starting at " << start << ", a found minimum of the deviation function is " << std::get<0>(min) << " at " << std::get<1>(min) << " (mass, gamma, A) using " << std::get<2>(min) << " counts (i.e. max counts).\n";
-    
-
-//     // ----------------------------------------------
-//     std::cout << "\n\nPart C \n";
-//     std::cout << "Here we investigate the central instead of forward finite difference approximation for the derivatives.\n";
-//     start = pp::vec{20, 20};
-//     min = newton_central(RV, start);
-//     std::cout << "Starting at " << start << ", a found minimum of Rosenbrock's valley function is " << std::get<0>(min) << " at " << std::get<1>(min) << " using " << std::get<2>(min) << " counts.\n";
-//     min = newton_central(Hf, start);
-//     std::cout << "Starting at " << start << ", a found minimum of Himmelblau's function is " << std::get<0>(min) << " at " << std::get<1>(min) << " using " << std::get<2>(min) << " counts.\n";
-//     std::cout << "Both of the functions do have a theoretical global minimum of 0. For the Rosenbrock's valley function is occurs at (1, 1) and for the Himmelblau's function it occurs at (3, 2), (-2.805, 3.1313), (-3.779, -3.283) and (3.584, -1.848).\n";
-//     start = pp::vec{125, 4, 15};
-//     min = newton_central(D, start, 1e-3, 10000);
-//     std::cout << "Starting at " << start << ", a found minimum of the deviation function is " << std::get<0>(min) << " at " << std::get<1>(min) << " (mass, gamma, A) using " << std::get<2>(min) << " counts.\n";
-//     start = pp::vec{130, 4, 15};
-//     min = newton_central(D, start, 1e-3, 10000);
-//     std::cout << "Starting at " << start << ", a found minimum of the deviation function is " << std::get<0>(min) << " at " << std::get<1>(min) << " (mass, gamma, A) using " << std::get<2>(min) << " counts (i.e. max counts).\n";
-    
-//     std::cout << "Comparison: The new method produces very similar results although the found minima for Rosenbrock's valley function and Himmelblau's function is a factor of 2-3 times closer to 0 when using the central method. This could just be the case for these two functions and my initial guess for the minimas' location. For the fitting to the data it produces a similar fit although it needs many more iterations (~738 to ~6).\n";
-
-// return 0;
-// }

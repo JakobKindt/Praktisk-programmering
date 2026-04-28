@@ -1,6 +1,8 @@
 Part A and B 
-lr = 0.025
--0.256762
+final lr = 0.025
 
 
-Part B 
+Part C 
+lr = 0.01
+lr = 0.01
+After investigating a bit it turns out that the initial (random) guess for the optimizable parameters have a big influence. So does what interval we are looking at and the number of nodes, so this method is rather unstable when it comes to solving differential equations with only one (or two) initial conditions. 
