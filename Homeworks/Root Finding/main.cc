@@ -127,20 +127,18 @@ int main(){
         std::vector<double> xs = std::get<0>(result);
         std::vector<pp::vec> ys = std::get<1>(result);
         pp::vec res{ys[(int)xs.size() - 1][0]};
-        // for (int i = 0; i < (int)xs.size(); ++i){
-        //     std::cout << xs[i] << ", " << ys[i][0] << ", " << ys[i][1] << "\n";
-        // }
         return res;
     };
     
     
     pp::vec start{-2}, x{1};
     x = newton(func, start, 1e-3);
+    // ---------------------- Part C is an implementation for another algorithm to see that it works, simply use the upcoming line as x and compare the figures to see that they are identical
+    // x = quasi_newton(func, start, 1e-3);
     E = x[0];
     std::tuple<std::vector<double>, std::vector<pp::vec>> result = driver(pend, r_min, r_max, y_init);
     std::vector<double> xs = std::get<0>(result);
     std::vector<pp::vec> ys = std::get<1>(result);
-    // std::cout << xs << "\n";
 
     std::string outfile = "wave_func.txt";
     std::ofstream myoutput(outfile);
