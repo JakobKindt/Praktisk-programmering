@@ -87,11 +87,13 @@ pp::vec QMC(std::function<double(pp::vec)> f, pp::vec& a, pp::vec& b, int N, int
     return res;
 };
 
+
 pp::vec SMC(std::function<double(pp::vec)> f, pp::vec& a, pp::vec& b, int N, int nmin, int generator_type){
     if (N < nmin){return MC(f, a, b, N);}
     int dim = a.size();
-    pp::vec x(dim), mean_left(dim), mean_right(dim), n_left(dim), n_right(dim);
-    double r, fx, var, varmax = 0;
+    pp::vec x(dim), mean_left(dim), mean_right(dim), var_left(dim), var_right(dim), n_left(dim), n_right(dim);
+
+    double r, fx, var, varmax = -1;
     int n = 0;
     for (int i = 0; i < N; ++i){
         for (int j = 0; j < dim; ++j){
@@ -102,24 +104,30 @@ pp::vec SMC(std::function<double(pp::vec)> f, pp::vec& a, pp::vec& b, int N, int
             }
         fx = f(x);
         for (int j = 0; j < dim; ++j){
-            if (x[j] > (b[j] + a[j])/2){mean_right[j] += fx; ++n_right[j];} //Note n_right is not actually integers because I use my own non-templated vector class.
-            else{mean_left[j] += fx; ++n_left[j];}
+            if (x[j] > (b[j] + a[j])/2){mean_right[j] += fx; ++n_right[j]; var_right[j] += fx*fx;} //Note n_right is not actually integers because I use my own non-templated vector class.
+            else{mean_left[j] += fx; ++n_left[j]; var_left[j] += fx*fx;}
         }
     }
 
     mean_left /= n_left; mean_right /= n_right;
+    var_right = var_right/n_right - mean_right*mean_right; var_left = var_left/n_left - mean_left*mean_left;
     for (int j = 0; j < dim; ++j){
-        var = std::abs(mean_left[j] - mean_right[j]);
-        if (var > varmax){n = j; varmax = var;}
+        var_right[j] = std::max(var_right[j], 0.); var_left[j] = std::max(var_left[j], 0.); // Prevents rounding error shenanigans.
+        var = var_right[j] + var_left[j];
+        if (var > varmax){n = j; varmax = var;} // Note that this is not actually a variance
     }
+    double var_r = std::sqrt(var_right[n]), var_l = std::sqrt(var_left[n]);
     pp::vec b_new = b, a_new = a;
     b_new[n] = (b[n] + a[n])/2; a_new[n] = (b[n] + a[n])/2;
-    int N_left = n_left[n], N_right = n_right[n];
-
-    pp::vec res_left = SMC(f, a, b_new, N_left, nmin), res_right = SMC(f, a_new, b, N_right, nmin);
+    int N_left, N_right;
+    // int Nprobe = 100; // ChatGPT suggested this. However, even for Nprobe = 1, this increases the |measured - theory|/(estimated err) by a factor of 10, so I have omitted it.
+    // N -= Nprobe; // ChatGPT suggested this.
+    if (var_l == 0 && var_r == 0){N_left = N/2; N_right = N/2;}
+    else{N_left = N*var_l/(var_l + var_r); N_right = N - N_left;}
+    N_left = std::max((int)1, N_left); N_right = std::max((int)1, N_right); 
+    pp::vec res_left = SMC(f, a, b_new, N_left, nmin, generator_type), res_right = SMC(f, a_new, b, N_right, nmin, generator_type);
     double integral = res_left[0] + res_right[0];
     double err = std::sqrt(res_left[1]*res_left[1] + res_right[1]*res_right[1]);
     pp::vec res{integral, err};
     return res;
 };
-

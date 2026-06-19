@@ -52,7 +52,7 @@ fig_ints.svg: err.txt Makefile
 	set logscale x ;\
 	f(x) = pi ;\
 	plot \
-		"$<" using 1:2:3 with yerrorbars title "Interal value", \
+		"$<" using 1:2:3 with yerrorbars title "Measured value", \
 		f(x) with lines dashtype 2 linecolor rgb "#000000" title "Theoretical" ;\
 	' |tee log.ints|gnuplot
 
@@ -84,7 +84,7 @@ fig_quasi_ints.svg: quasi_err.txt Makefile
 	set logscale x ;\
 	f(x) = pi ;\
 	plot \
-		"$<" using 1:2:3 with yerrorbars title "Interal value", \
+		"$<" using 1:2:3 with yerrorbars title "Measured value", \
 		f(x) with lines dashtype 2 linecolor rgb "#000000" title "Theoretical" ;\
 	' |tee log.quasi_ints|gnuplot
 

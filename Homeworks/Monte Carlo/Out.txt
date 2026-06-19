@@ -39,7 +39,7 @@ The error seemingly still follows a somewhat 1/sqrt(N) dependence but convergenc
 
 
 Part C 
-Measured integral of unit circle: 3.1416. With an error of: 1.61144e-06. Theoretical is pi \simeq 3.1415926535897932384626433. 
-Thus, the percensive deviation is 8.87467e-05% with an error of: 5.12938e-05%.
-|measured - theory|/(estimated err) = 1.73016. 
-|measured - theory| = 2.78806e-06. 
+Measured integral of unit circle: 3.14151. With an error of: 0.00181369. Theoretical is pi \simeq 3.1415926535897932384626433. 
+Thus, the percensive deviation is -0.00256258% with an error of: 0.0577315%.
+|measured - theory|/(estimated err) = 0.0443879. 
+|measured - theory| = 8.05059e-05. 
