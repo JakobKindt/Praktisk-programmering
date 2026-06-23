@@ -7,15 +7,16 @@ class PSO{
 public:
     matrix pos, vel, p_opt_pos; // pos is current position, vel is current velocity and p_opt_pos are the current personal optimal positions
     pp::vec g_opt_pos, pb, p, v, a, b; // g_opt_pos is the current global optimal position and pb are the current personal optimal positions' values. p is a dummy vector for position, v is a dummy vector for velocity. a and b are the lower and upper bound for the initization/rattleing of the system
-    double gb = std::numeric_limits<double>::infinity(), w = 0.99, U = 0.1, value; // gb is the current global best position's value, w is the coefficient to maintain momentum and U is the coefficient for "drag" towards personal and global best. Value is just a dummy double for value of the function.
-    int dim, n_particles;
-    std::function<double(pp::vec&)> f; 
+    double gb = std::numeric_limits<double>::infinity(), w = 0.99, value; // gb is the current global best position's value and w is the coefficient to maintain momentum. Value is just a dummy double for value of the function.
+    int dim, n_particles, amount_of_steps = 0; // amount of steps is used to check how many steps are needed for convergence.
+    std::function<double(pp::vec&)> f;
+    std::default_random_engine re;
+    std::uniform_real_distribution<double> unif; // Used to generate random value for U1 and U2 in step method.
     PSO(std::function<double(pp::vec&)> F, pp::vec A, pp::vec B, int size = 10){ // This instantiates the system. a and b are the lower and upper boundaries for instantiation. Size is number of particles
         f = F; a = A; b = B;
         dim = a.size(); n_particles = size;
         pos = matrix(dim, n_particles); vel = matrix(dim, n_particles);
         g_opt_pos = pp::vec(dim); pb = pp::vec(n_particles);
-        std::default_random_engine re;
         std::uniform_real_distribution<double> unif_p; // Used to generate random numbers for the positions
         std::uniform_real_distribution<double> unif_v; // Used to generate random numbers for the velocities
         for (int i = 0; i < dim; ++i){

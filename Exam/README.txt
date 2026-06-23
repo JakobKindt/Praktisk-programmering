@@ -21,3 +21,7 @@ std::function<double(pp::vec&)> f = [](pp::vec& x){...};
     PSO A(f, a, b, 30);
     A.optimize(1e5, 500, false, 1e-2, 1e-2);
     A.show_results();
+
+---------------------------------------------------------------------------------------------
+
+After implementing my method, I check if my algorithm worked on a simple function and complicated function and during this I also investigated if my rattle method was useful. After that I checked how the time for convergence scales with the number of particles by timing the algorithm in parallel.
