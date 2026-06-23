@@ -1,0 +1,44 @@
+First, I check if my algorithm works as intended for the function f(x_1, x_2, x_3) = \sum_{i = 1}^3 |x_i| which has an obivious minima at 0.
+
+System has converged prematurely after 22181 steps.
+Global optimal position = {1.42806e-31, -9.448e-15, 7.88861e-31}
+Global optimal value = 9.448e-15
+The algorithm took 97 milliseconds. 
+
+I wish to compare this with what happens if I use my rattle algorithm for the same function.
+The system was rattled 61575 times. 
+Global optimal position = {-2.55593e-219, -9.62863e-219, 9.41638e-221}
+Global optimal value = 1.22787e-218
+The algorithm took 536 milliseconds. 
+In this case, the rattle method makes it such that the precision is much greater. However, it also took approximate 5 times longer and it did not stop because it stop converging but rather because the max optimization steps was reached, so this is an expensive addition to the algorithm. 
+
+Now I test the algorithm on a more complicated function which is the sum of 4 gaussian functions in 4D (where I have no analytical expression for the minima, but given the weights and standard deviations of the gaussian functions, see main directly, the minima should be close to the center of the third gaussian function by design). Here I use 5 particles. 
+
+System has converged prematurely after 4855 steps.
+Global optimal position = {-0.777469, 0.757793, 0.487185, -1.3866}
+Global optimal value = -7.60221
+The algorithm took 7 milliseconds. 
+
+Now with rattle. 
+The system was rattled 1983 times. 
+Global optimal position = {0.154072, 1.18128, 0.415182, -0.339825}
+Global optimal value = -15.4963
+The algorithm took 175 milliseconds. 
+
+In this case, rattle made it 20-25 times slower, but it found the actual global minima instead of a local one which is a proof of concept for why rattle might be usefull. However, if we use PSO more like intended and have a decent amount of particles, i.e. 50 instead of 5, we also find the global minima and it is much still much faster than with rattle.
+
+System has converged prematurely after 3193 steps.
+Global optimal position = {0.154072, 1.18128, 0.415182, -0.339825}
+Global optimal value = -15.4963
+The algorithm took 53 milliseconds. 
+
+ This shows that if one needs to find the minima, it is more useful to simply increase the number of particles.
+System has converged prematurely after 4855 steps.
+System has converged prematurely after 3193 steps.
+System has converged prematurely after 3425 steps.
+System has converged prematurely after 3164 steps.
+System has converged prematurely after 2116 steps.
+System has converged prematurely after 3694 steps.
+System has converged prematurely after 3163 steps.
+System has converged prematurely after 3550 steps.
+{19, 61, 456, 929, 1285, 1257, 1921, 3058}
