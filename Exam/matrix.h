@@ -53,18 +53,6 @@ public:
     matrix T(); // transposed
     matrix reshape(int, int);
 
-    // void print(std::string s="") const {
-	// 	std::cout<< s <<" ";
-	// 	for(int i = 0; i < ncols;++i){
-    //         std::cout <<"\t ";
-    //         for (int j = 0; j < nrows;++j){
-    //         std::cout<< cols[i * nrows + j] <<", \t";
-    //         }
-    //         std::cout <<" \n";
-    //         }
-            
-	// 	std::cout<<"\n";
-	// }
     void print(std::string s="") const {
 		std::cout<< s <<"{";
 		for(int i = 0; i < ncols;++i){

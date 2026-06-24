@@ -45,6 +45,7 @@ public:
     
     // utility
     double norm() const;
+    double norm_squared() const;
     vec push_back(const double a);
 
     vec& project(const vec& w, bool demand_same_size = true);
@@ -79,6 +80,7 @@ vec operator/(const vec& v, const vec& w); // Division of a vectors
 double dot(const vec& v, const vec& w); // Dot product between vectors
 
 double norm(const vec& v);
+double norm_squared(const vec& v);
 vec project(const vec& v, const vec &w, bool demand_same_size = true); // Projects vector onto another vector
 
 bool approx(const vec& v, const vec& w, double acc = 1e-6, double eps = 1e-6);

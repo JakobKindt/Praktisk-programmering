@@ -2,14 +2,15 @@
 #include<cmath>
 
 void PSO::step(){ // This method takes a single step
-    double U1, U2;
+    double U1, U2, value;
+    pp::vec po, v, p;
     pos += vel; // updates positions
     for (int i = 0; i < n_particles; ++i){ // Updates velocities
-        
-        v = vel.get_row(i); // v is dummy vector for velocity defined in PSO.h
-        p = pos.get_row(i); // p is dummy vector for position defined in PSO.h
+        v = vel.get_row(i);
+        p = pos.get_row(i);
         U1 = unif(re); U2 = unif(re);
-        v = w*v + U1*(p_opt_pos.get_row(i) - p) + U2*(g_opt_pos - p);
+        po = p_opt_pos.get_row(i);
+        v = w*v + U1*(po - p) + U2*(g_opt_pos - p);
         for (int j = 0; j < dim; ++j){
             if (pos[i, j] < a[j]){pos[i, j] = a[j]; v[j] *= -0.25;} // Stops and bounces off of boundaries
             if (pos[i, j] > b[j]){pos[i, j] = b[j]; v[j] *= -0.25;} // Stops and bounces off of boundaries
@@ -27,7 +28,7 @@ void PSO::step(){ // This method takes a single step
 
 void PSO::optimize(int N, int patience, bool Rattle, double gamma, double Rattle_threshold){ // This optimizes the system, i.e. perfroms steps until the system has converged (global best not improved in a certain amount of steps called patience) or a total number of steps have been performed (N). gamma is for rattle. Rattle_threshold is used to check when to rattle the system.
     int timer = 0, Rattle_counter = 0;
-    double temp_gb = gb, max_speed, norm;
+    double temp_gb = gb, max_speed, norm_squared, decay = 1;
     for (int i = 0; i < N; ++i){
         ++timer;
         if (timer == patience + 1){std::cout << "System has converged prematurely after " << amount_of_steps << " steps.\n"; break;}
@@ -39,13 +40,14 @@ void PSO::optimize(int N, int patience, bool Rattle, double gamma, double Rattle
         if (Rattle){ // This is not needed in the optimization algorithm but I thought it was a nice addition of the algorithm to decrease the probablity of stopping prematurely. It rattles the system if the particles becomes (approximately, defined by Rattle_threshold) stationary, i.e. gives each particle a title kick to its velocity.
             max_speed = -std::numeric_limits<double>::infinity(); // Sets the measured maximum speed of the particles to -infinity as no speeds have been measured 
             for (int j = 0; j < n_particles; ++j){ // Measures the speed of the fastest moving particle
-                norm = vel.get_row(j).norm(); // Measures the speed of particle i
-                if (norm > max_speed){max_speed = norm;} // Compares speed and potentially updates max speed
+                norm_squared = vel.get_row(j).norm_squared(); // Measures the speed of particle i
+                if (norm_squared > max_speed){max_speed = norm_squared;} // Compares speed and potentially updates max speed
             }
-            if (max_speed < Rattle_threshold*std::pow(0.99, Rattle_counter)){ // If the max speed is below the threshold, it rattles the system. The threshold gets lowered the more we rattle since that presumably means that we are closer and closer to the minina, so we wish to rattle less often
+            if (max_speed < Rattle_threshold*decay){ // If the max speed is below the threshold, it rattles the system. The threshold gets lowered the more we rattle since that presumably means that we are closer and closer to the minina, so we wish to rattle less often
                 timer = 0; // The timer resets if the system rattles
-                rattle(gamma*std::pow(0.99, Rattle_counter)); // The rattle amount decreases when we rattle more and more since it presumably means that we are closer and closer to the minima, so we wish to rattle less and less.
+                rattle(gamma*decay); // The rattle amount decreases when we rattle more and more since it presumably means that we are closer and closer to the minima, so we wish to rattle less and less.
                 ++Rattle_counter;
+                decay *= 0.99;
             }
         }
     }

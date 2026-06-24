@@ -31,8 +31,18 @@ fig_times.svg : data.txt Makefile
 	set xlabel "Amount of particles" ;\
 	set ylabel "Time to converge [ms]" ;\
 	set title "Investigation of time dependence for PSO" ;\
+	a = 1 ;\
+	b = 1 ;\
+	c = 1 ;\
+	d = 1 ;\
+	f(x) = a*x + b ;\
+	g(x) = c*x**d ;\
+	fit f(x) "$<" using 1:2 via a, b ;\
+	fit g(x) "$<" using 1:2 via c, d ;\
 	plot \
-		"$<" using 1:2 with linespoint dt 2 lc rgb "#000000" title "";\
+		"$<" using 1:2 with points title "Data", \
+		f(x) with lines dt 2 lc rgb "#000000" title sprintf("Fit to ax + b, a = %3.5f, b = %3.5f", a, b), \
+		g(x) with lines dt 2 lc rgb "#0015ff" title sprintf("Fit to cx^d, c = %3.5f, d = %3.5f", c, d) ;\
 	'|tee log.fig_times|gnuplot
 
 

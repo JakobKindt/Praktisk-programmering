@@ -3,14 +3,14 @@ First, I check if my algorithm works as intended for the function f(x_1, x_2, x_
 System has converged prematurely after 1356 steps.
 Global optimal position = {2.75362e-06, 3.04874e-06, -4.41401e-05}
 Global optimal value = 4.99425e-05
-The algorithm took 93 milliseconds. 
+The algorithm took 100 milliseconds. 
 
 I wish to compare this with what happens if I use my rattle algorithm for the same function.
-System has converged prematurely after 1739 steps.
-The system was rattled 5 times. 
+System has converged prematurely after 5150 steps.
+The system was rattled 13 times. 
 Global optimal position = {-8.97805e-07, 2.73777e-05, -6.48999e-05}
 Global optimal value = 9.31753e-05
-The algorithm took 141 milliseconds. 
+The algorithm took 411 milliseconds. 
 In this case, the rattle method makes it such that the precision is slighty better but it takes longer to converges, so it is a somewhat expensive addition to the algorithm. 
 
 Now I test the algorithm on a more complicated function which is the sum of 4 gaussian functions in 4D (where I have no analytical expression for the minima, but given the weights and standard deviations of the gaussian functions, see main directly, the minima should be close to the center of the third gaussian function by design). Here I use 5 particles. 
@@ -18,21 +18,21 @@ Now I test the algorithm on a more complicated function which is the sum of 4 ga
 System has converged prematurely after 2258 steps.
 Global optimal position = {-0.614568, 0.805686, 0.54686, -1.26137}
 Global optimal value = -7.89512
-The algorithm took 5 milliseconds. 
+The algorithm took 4 milliseconds. 
 
 Now with rattle. 
-System has converged prematurely after 4672 steps.
-The system was rattled 197 times. 
-Global optimal position = {0.149758, 1.16201, 0.495236, -0.364442}
-Global optimal value = -15.2179
-The algorithm took 13 milliseconds. 
+System has converged prematurely after 6228 steps.
+The system was rattled 384 times. 
+Global optimal position = {0.114314, 1.18584, 0.366488, -0.391947}
+Global optimal value = -15.2527
+The algorithm took 14 milliseconds. 
 
 In this case, rattle made it roughly 6 times slower and once again got sightly closer to the global minima which is a proof of concept for why rattle might be usefull. However, if we use PSO more like intended and have a decent amount of particles, i.e. 25 instead of 5, we also get closer to the global minima and it is faster than with rattle.
 
 System has converged prematurely after 1949 steps.
 Global optimal position = {0.155996, 1.17543, 0.418395, -0.341962}
 Global optimal value = -15.4942
-The algorithm took 23 milliseconds. 
+The algorithm took 20 milliseconds. 
 
 This shows that if one needs to find the minima, it is more useful to simply increase the number of particles.
 As a final thing, I now investigate how the number of particles influences the time of convergence (See fig_times.svg). Surprisingly enoughtSystem has converged prematurely after 1033 steps.

@@ -33,7 +33,7 @@ int main(){
 
     start = std::chrono::high_resolution_clock::now();
     PSO B(f, a, b, 300);
-    B.optimize(1e5, 1000, true, 1e-1, 5); // Test if rattle also give usefull results
+    B.optimize(1e5, 1000, true, 1e-1, 25); // Test if rattle also give usefull results
     B.show_results();
     
     stop = std::chrono::high_resolution_clock::now();
@@ -66,7 +66,7 @@ int main(){
 
     start = std::chrono::high_resolution_clock::now();
     PSO D(f2, a, b, 5);
-    D.optimize(1e5, 500, true, 1e-1, 5);
+    D.optimize(1e5, 500, true, 1e-1, 25);
     D.show_results();
     stop = std::chrono::high_resolution_clock::now();
     duration = duration_cast<std::chrono::milliseconds>(stop - start);
