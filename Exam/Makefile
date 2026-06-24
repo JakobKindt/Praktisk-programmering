@@ -53,14 +53,25 @@ fig_convergence.svg : data.txt Makefile
 	set xlabel "Amount of particles" ;\
 	set ylabel "Amount of steps to converge" ;\
 	set title "Investigation of convergence for PSO" ;\
-	a = 1 ;\
-	b = 1 ;\
-	f(x) = a/x + b ;\
-	fit f(x) "$<" using 1:3 via a, b ;\
 	plot \
-		"$<" using 1:3 with points title "data", \
-		f(x) with lines title sprintf("Fit to a/x + b, a = %3.5f, b = %3.5f", a, b) ;\
+		"$<" using 1:3 with points title "data" ;\
 	'|tee log.fig_convergence|gnuplot
+
+# fig_convergence.svg : data.txt Makefile
+# 	echo '\
+# 	set terminal svg ;\
+# 	set output "$@" ;\
+# 	set xlabel "Amount of particles" ;\
+# 	set ylabel "Amount of steps to converge" ;\
+# 	set title "Investigation of convergence for PSO" ;\
+# 	a = 1 ;\
+# 	b = 1 ;\
+# 	f(x) = a/x + b ;\
+# 	fit f(x) "$<" using 1:3 via a, b ;\
+# 	plot \
+# 		"$<" using 1:3 with points title "data", \
+# 		f(x) with lines title sprintf("Fit to a/x + b, a = %3.5f, b = %3.5f", a, b) ;\
+# 	'|tee log.fig_convergence|gnuplot
 
 # fig_convergence.svg : data.txt Makefile
 # 	echo '\

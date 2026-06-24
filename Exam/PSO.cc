@@ -31,7 +31,7 @@ void PSO::optimize(int N, int patience, bool Rattle, double gamma, double Rattle
     double temp_gb = gb, max_speed, norm_squared, decay = 1;
     for (int i = 0; i < N; ++i){
         ++timer;
-        if (timer == patience + 1){std::cout << "System has converged prematurely after " << amount_of_steps << " steps.\n"; break;}
+        if (timer == patience + 1){std::cout << "System has converged prematurely after " << amount_of_steps - patience << " steps.\n"; break;}
         ++amount_of_steps;
         step();
         if (gb < temp_gb){temp_gb = gb; timer = 0;} // std::cout << "a step has been performed\n";} // Checks if system has improved, if so, it resets the timer.
@@ -44,10 +44,10 @@ void PSO::optimize(int N, int patience, bool Rattle, double gamma, double Rattle
                 if (norm_squared > max_speed){max_speed = norm_squared;} // Compares speed and potentially updates max speed
             }
             if (max_speed < Rattle_threshold*decay){ // If the max speed is below the threshold, it rattles the system. The threshold gets lowered the more we rattle since that presumably means that we are closer and closer to the minina, so we wish to rattle less often
-                timer = 0; // The timer resets if the system rattles
+                // timer = std::min({timer, Rattle_counter + 1}); // The timer decreases if the system rattles but decreases less and less to avoid the code from running to long. This makes it such that one can rattle at most "patience" times.
                 rattle(gamma*decay); // The rattle amount decreases when we rattle more and more since it presumably means that we are closer and closer to the minima, so we wish to rattle less and less.
                 ++Rattle_counter;
-                decay *= 0.99;
+                decay *= 0.98;
             }
         }
     }

@@ -6,8 +6,8 @@
 class PSO{
 public:
     matrix pos, vel, p_opt_pos; // pos is current position, vel is current velocity and p_opt_pos are the current personal optimal positions
-    pp::vec g_opt_pos, pb, a, b; // g_opt_pos is the current global optimal position and pb are the current personal optimal positions' values. a and b are the lower and upper bound for the initization/rattleing of the system
-    double gb = std::numeric_limits<double>::infinity(), w = 0.99; // gb is the current global best position's value and w is the coefficient to maintain momentum.
+    pp::vec g_opt_pos, pb, a, b; // g_opt_pos is the current global optimal position and pb are the current personal optimal positions' values. a and b are the lower and upper bound for the particles in the system
+    double gb = std::numeric_limits<double>::infinity(), w = 0.7; // gb is the current global best position's value and w is the coefficient to maintain momentum.
     int dim, n_particles, amount_of_steps = 0; // amount of steps is used to check how many steps are needed for convergence.
     std::function<double(pp::vec&)> f;
     std::default_random_engine re;
