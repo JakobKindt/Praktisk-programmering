@@ -25,3 +25,5 @@ A.show_results(); // Print global minima and its position
 ---------------------------------------------------------------------------------------------
 
 After implementing my method, I check if my algorithm worked on a simple function and complicated function and during this I also investigated if my rattle method was useful. After that I checked how the time for convergence and amount of steps for convergence scales with the number of particles by timing the algorithm in parallel. Finally, I fitted the time of convergence versus number of particles as f(x) = ax + b and g(x) = cx^d. 
+
+(Optional) Selfevaulation: 10
