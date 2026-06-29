@@ -4,7 +4,7 @@ The class then has four methods, namely step, optimize, rattle and show_results 
 
 void step(); // Takes a single step for the particles, i.e. updates positions, velocities and optimal positions and values.
 
-void optimize(int N, int patience, bool Rattle, double gamma, double Rattle_threshold); // This optimizes the system, i.e. perfroms steps until the system has converged (global best not improved in a certain amount of steps called patience) or a total number of steps have been performed (N). bool Rattle decides if one wishes to use the Rattle method in the optimization which is my own addition to the algorithm. gamma is for rattle. Rattle_threshold is used to check when to rattle the system.
+void optimize(int N, int patience, bool Rattle, double gamma, double Rattle_threshold); // This optimizes the system, i.e. performs steps until the system has converged (global best not improved in a certain amount of steps called patience) or a total number of steps have been performed (N). bool Rattle decides if one wishes to use the Rattle method in the optimization which is my own addition to the algorithm. gamma is for rattle. Rattle_threshold is used to check when to rattle the system.
 
 void rattle(double gamma); // This randomizes velocities in case the system gets stuck. Velocities are randomized like in the instantiation except gamma is multiplied on the random velocities if the user wants to dampen the rattleing.
 
@@ -24,6 +24,10 @@ A.show_results(); // Print global minima and its position
 
 ---------------------------------------------------------------------------------------------
 
-After implementing my method, I check if my algorithm worked on a simple function and complicated function and during this I also investigated if my rattle method was useful. After that I checked how the time for convergence and amount of steps for convergence scales with the number of particles by timing the algorithm in parallel. Finally, I fitted the time of convergence versus number of particles as f(x) = ax + b and g(x) = cx^d. 
+After implementing my method, I checked if my algorithm worked on a simple function and complicated function and during this I also investigated if my rattle method was useful. After that I checked how the time for convergence and amount of steps for convergence scales with the number of particles by timing the algorithm in parallel. Finally, I fitted the time of convergence versus number of particles as f(x) = ax + b and g(x) = cx^d. 
 
-(Optional) Selfevaulation: 10
+(Optional) Self evaulation: 10
+This is based on the following thought process:
+Implementation of PSO ("Part A"): 6
+Implementation and comparison to own addition to the algorithm, i.e. rattle ("Part B"): 3
+Investigation of convergence in parallel ("Part C"): 1

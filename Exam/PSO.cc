@@ -4,16 +4,17 @@
 void PSO::step(){ // This method takes a single step
     double U1, U2, value;
     pp::vec po, v, p;
-    pos += vel; // updates positions
     for (int i = 0; i < n_particles; ++i){ // Updates velocities
         v = vel.get_row(i);
         p = pos.get_row(i);
         U1 = unif(re); U2 = unif(re);
         po = p_opt_pos.get_row(i);
         v = w*v + U1*(po - p) + U2*(g_opt_pos - p);
+        p += v; // updates positions
+        pos.set_row(i, p);
         for (int j = 0; j < dim; ++j){
-            if (pos[i, j] < a[j]){pos[i, j] = a[j]; v[j] *= -0.25;} // Stops and bounces off of boundaries
-            if (pos[i, j] > b[j]){pos[i, j] = b[j]; v[j] *= -0.25;} // Stops and bounces off of boundaries
+            if (pos[i, j] < a[j]){pos[i, j] = a[j]; p[j] = a[j]; v[j] *= -0.25;} // Stops and bounces off of boundaries
+            if (pos[i, j] > b[j]){pos[i, j] = b[j]; p[j] = b[j]; v[j] *= -0.25;} // Stops and bounces off of boundaries
         }
         vel.set_row(i, v);
         value = f(p); // value is dummy double for value of function defined in PSO.h
@@ -31,7 +32,7 @@ void PSO::optimize(int N, int patience, bool Rattle, double gamma, double Rattle
     double temp_gb = gb, max_speed, norm_squared, decay = 1;
     for (int i = 0; i < N; ++i){
         ++timer;
-        if (timer == patience + 1){std::cout << "System has converged prematurely after " << amount_of_steps - patience << " steps.\n"; break;}
+        if (timer == patience + 1){std::cout << "System has converged after " << amount_of_steps - patience << " steps.\n"; break;}
         ++amount_of_steps;
         step();
         if (gb < temp_gb){temp_gb = gb; timer = 0;} // std::cout << "a step has been performed\n";} // Checks if system has improved, if so, it resets the timer.
@@ -47,7 +48,7 @@ void PSO::optimize(int N, int patience, bool Rattle, double gamma, double Rattle
                 // timer = std::min({timer, Rattle_counter + 1}); // The timer decreases if the system rattles but decreases less and less to avoid the code from running to long. This makes it such that one can rattle at most "patience" times.
                 rattle(gamma*decay); // The rattle amount decreases when we rattle more and more since it presumably means that we are closer and closer to the minima, so we wish to rattle less and less.
                 ++Rattle_counter;
-                decay *= 0.98;
+                decay *= 0.94; // One could also investigate how this parameter should behave. After toying a bit with it I have set it to 0.94 but another value might be more preferable. Generally speaking I think it should be around 0.9-0.98.
             }
         }
     }
@@ -58,7 +59,7 @@ void PSO::optimize(int N, int patience, bool Rattle, double gamma, double Rattle
 }
 
 
-void PSO::rattle(double gamma){ // This gives each particle a random velocity kick, i.e. rattles the system.
+void PSO::rattle(double gamma){ // This gives each particle a random velocity kick, i.e. rattles the system. Note that it is not standard in the algorithm but I found it interesting to investigate how it alters the algorithm.
     std::uniform_real_distribution<double> unif_v; // Used to generate random numbers for the velocities
     for (int i = 0; i < dim; ++i){
         unif_v.param(std::uniform_real_distribution<double>::param_type((a[i] - b[i])/2, (b[i] - a[i])/2)); // Setting limits of random kick velocities

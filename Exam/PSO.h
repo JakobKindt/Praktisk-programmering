@@ -17,7 +17,7 @@ public:
         double value;
         f = F; a = A; b = B;
         dim = a.size(); n_particles = size;
-        pos = matrix(dim, n_particles); vel = matrix(dim, n_particles);
+        pos = matrix(dim, n_particles); vel = matrix(dim, n_particles); // The code can probably be optimized by letting this be one long vector but for reading reasons, I let it be a matrix
         g_opt_pos = pp::vec(dim); pb = pp::vec(n_particles);
         std::uniform_real_distribution<double> unif_p; // Used to generate random numbers for the positions
         std::uniform_real_distribution<double> unif_v; // Used to generate random numbers for the velocities
