@@ -27,7 +27,3 @@ A.show_results(); // Print global minima and its position
 After implementing my method, I checked if my algorithm worked on a simple function and complicated function and during this I also investigated if my rattle method was useful. After that I checked how the time for convergence and amount of steps for convergence scales with the number of particles by timing the algorithm in parallel. Finally, I fitted the time of convergence versus number of particles as f(x) = ax + b and g(x) = cx^d. 
 
 (Optional) Self evaulation: 10
-This is based on the following thought process:
-Implementation of PSO ("Part A"): 6
-Implementation and comparison to own addition to the algorithm, i.e. rattle ("Part B"): 3
-Investigation of convergence in parallel ("Part C"): 1
